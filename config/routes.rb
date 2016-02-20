@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'maps/location'
+
+  get 'statics/home'
+
+  get 'statics/about'
+
+  get 'statics/help'
+
+  root 'statics#home'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
