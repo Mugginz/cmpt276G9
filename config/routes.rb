@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'users/new'
+
   root 'statics#home'
 
   get 'location' => 'maps#location'
