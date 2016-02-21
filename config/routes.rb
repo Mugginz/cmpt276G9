@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'statics#home'
 
-  get 'maps' => 'maps#location'
+  get 'location' => 'maps#location'
   get 'home' => 'statics#home'
   get 'about' => 'statics#about'
   get 'help' => 'statics#help'
