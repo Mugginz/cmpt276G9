@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def create
   	@u = User.new(u_params)
   	if @u.save
+      log_in @u
   		flash[:success] = "Account creation successful."
   		redirect_to @u
   	else

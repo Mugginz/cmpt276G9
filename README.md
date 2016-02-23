@@ -9,6 +9,10 @@ Ruby on Rails web app.
 
 Documentation
 -----
+Current deployed build:  
+[Alpha](http://cmpt276-group9.herokuapp.com/)  
+
+
 Setting up a local (POSIX compliant) development environment:
 * Make sure ruby version 1.9.3 or greater with rails 4.2 or greater is installed.
 * Clone [this repo](https://github.com/Mugginz/cmpt276G9.git).
@@ -21,10 +25,6 @@ $ rake db:migrate;
 ```
 * Start a rails server with desired config for testing.
 * Enjoy!  
-
-
-Current deployed build:  
-[Alpha](http://cmpt276-group9.herokuapp.com/)
 
 Authors
 -----
