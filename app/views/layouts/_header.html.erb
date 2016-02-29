@@ -1,19 +1,42 @@
 <header class="header">
-	<h3 class="banner">276 Group 9</h3>
-	<nav class="menu">
-  		<ul class="navbar" >
-  			<li><%= link_to "Home", root_path %></li>
-			<li><%= link_to "About", about_path %></li>
-			<li><%= link_to "Maps", location_path %></li>
+	<h3 class="banner" style ="text-align: center;">276 Group 9</h3>
 
-			<% if logged_in? %>
-			<li><%= link_to "Profile", current_u %></li>
-			<li><%= link_to "Settings", '#' %></li>
-			<li><%= link_to "Log out", logout_path, method: :delete %></li>
-			<% else %>
-			<li><%= link_to "Log in", login_path %></li>
-			<% end %>
+<div class="dropdown">
+	<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
+	  <div id="myDropdown" class="dropdown-content">
+	  	
+	  		<li><%= link_to "Maps", location_path %></li>
+	  		
+				<% if logged_in? %>
+				<li><%= link_to "Profile", current_u %></li>
+				<li><%= link_to "Settings", '#' %></li>
+				<li><%= link_to "Log out", logout_path, method: :delete %></li>
+				
+				<% else %>
+				<li><%= link_to "Log in", login_path %></li>
+				
+				<% end %>
+	  </div>
+</div>
 
-    	</ul> 
-	</nav>
+<script>
+function dropdown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
 </header>
