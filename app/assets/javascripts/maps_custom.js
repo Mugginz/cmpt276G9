@@ -7,7 +7,7 @@ function initialize(){
 
   //setting up initial map of Vancouver region
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 49, lng: -123},
+    center: {lat: 49.28, lng: -123.12},
     zoom: 18
   });
 
@@ -21,23 +21,31 @@ function initialize(){
   //  infoWindow.setContent("X This browser does not support geolocation."); //either this or the alert above
   }
 ///////////////////////////////////////
-  //
+  //marker counter
+  var count = 0;
+  //left clicking creates a marker on spot
   google.maps.event.addListener(map, "click", function (event) {
     var latitude = event.latLng.lat();
     var longitude = event.latLng.lng();
 
-    var marker = new google.maps.Marker({map: map});
+    //object to track a marker and it's coordinates
+    markCoords = {
+      var marker = new google.maps.Marker(
+        { map: map
+      });
 
-    pos = {
-      lat: latitude,
-      lng: longitude
+      pos = {
+        lat: latitude,
+        lng: longitude
+      }
     };
-    coordsArray.push(pos);
+    coordsArray.push(markCoords);
 
-    marker.setPosition(pos);
-    map.setCenter(pos);
+    marker.setPosition(coordsArray[i].pos);
+    map.setCenter(coordsArray[i].pos);
 
-    var runningPath = new google.maps.Polyline({
+    //draws polyline to connect the markers sequentially
+/*    var runningPath = new google.maps.Polyline({
       path: coordsArray,
       geodesic: true,
       strokeColor: '#FF0000',
@@ -46,13 +54,25 @@ function initialize(){
     });
 
     runningPath.setMap(map);
+*/
+    i = i + 1;
   });
-
+////////////////////////////////working on this section////////////////////////////////////
+  //creates a infoWindow object. Note only need this one window. Same contents for all markers.
+//  var infoWindowPop = new google.maps.infoWindow({map: map});
+//  infoWindowPop.setContent("testing");
   //actions that can coccur when clicking a marker ((Dan is working on this atm))
-  //google.maps.event.addListener(marker,'click',function() {
+/*  google.maps.event.addListener(marker,'click',function() {
+      infoWindowPop.open(map, marker);
+    }
+  );
+*/
+/*  marker.addListener('click', function() {
+    infowindow.open(map, marker);
 
-
-  ///////////////////////////
+   });
+*/
+/////////////////////////////////////////////////////////////////////////////////////////
   function showPosition(position){
     pos = {
       lat: position.coords.latitude,
