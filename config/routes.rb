@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get 'location' => 'maps#location'
   get 'home' => 'statics#home'
-  get 'about' => 'statics#about'
+  #get 'about' => 'statics#about'
   get 'help' => 'statics#help'
   get 'signup' => 'users#new'
 

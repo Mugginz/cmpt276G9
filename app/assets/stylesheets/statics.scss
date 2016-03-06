@@ -9,32 +9,46 @@ body{
 	border: none;
 }
 
+
+/* --- Header --- */
 .header {
 	width: 100%;
-	height:15vh;
-	text-align: center;
+	text-align: right;
 	background-color: gray;
 	padding: 5px 0 20px 0;
 	color: white;
 	margin: 0;
 }
-.banner {
+
+.logo_image{
 	float:left;
-	width:40vw;
-	height:20vh;
-	margin: auto;
-	position:absolute;
-	top: 0; left: 0; right: 0;
-	font-size:4vw;
+	width:170px;
+	height:80px;
+	padding-left:100px;
 }
 
+.banner {
+	text-align: center;
+	margin: 7px 10px 7px 10px;
+}
+.app_name{
+	color: white;
+	font-style: italic;
+}
+
+
+/* --- Footer --- */
 .footer {
 	width: 100%;
 	text-align: center;
-	background-color: gray;
 	padding: 5px 0 20px 0;
 	line-height: 2;
-	color: white;
+	overflow: hidden;
+	padding: 0;
+}
+
+hr{
+	margin: 0 0 10px 0;
 }
 .menu{
 	padding-top:10px;
@@ -55,6 +69,7 @@ body{
 	padding: 5px 10px;
 	
 }
+
 .menu ul li a:hover {
 	background-color: blue;
 }
@@ -63,6 +78,21 @@ body{
 	box-shadow: inset 0 0 7px 1px black;
 }
 
+.mission_statement{
+	margin-left: 8%;
+	float: left;
+	width: 35%;
+	min-width: 320px;
+	display: block;
+	text-align: left;
+}
+.copyright{
+	display: block;
+	clear: both;
+}
+
+
+/* --- Yield Container --- */
 .content {
 	width: 90vw;
 	min-width: 320px;
@@ -71,17 +101,4 @@ body{
 	background-color: lightgray;
 	min-height: 240px;
 	overflow: hidden;
-}
-
-.header_left{
-	float:left;
-	width:170px;
-	height:80px;
-	padding-left:100px;
-}
-.header_right{
-	float:right;
-	height:10vh;
-	width:30vw;
-	padding-top:5vh;
 }
