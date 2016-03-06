@@ -7,8 +7,35 @@
 			<%= @u.name %>
 		</h2>
 	</aside>
-	<p class="user_profile">
-		User profile.
-	</p>
+	<div class="user_profile">
+		<p> Name: <%=@u.name %> </p>
+		<p> Age:</p>
+		<p>Routes Completed:</p>
+		<table class="routes_completed">
+			<tr>
+				<th>Route Name</th>
+				<th>Time to complete</th>
+				<th>Link to Route</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		<p>Routes in progress:</p>
+		<table class="routes_in_progress">
+			<tr>
+				<th>Route Name</th>
+				<th>Progress</th>
+				<th>Link to Route</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
 </div>
 

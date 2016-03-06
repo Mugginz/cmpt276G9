@@ -1,19 +1,23 @@
 <header class="header">
-	<h3 class="banner">276 Group 9</h3>
-	<nav class="menu">
-  		<ul class="navbar" >
-  			<li><%= link_to "Home", root_path %></li>
-			<li><%= link_to "About", about_path %></li>
-			<li><%= link_to "Maps", location_path %></li>
+	<div class="header_left">
+		<%= link_to image_tag("https://pbs.twimg.com/profile_images/1123677732/logo_avatar_large.png",style:'width:100%;height:100%;',alt:"Rails Logo"), root_path %>
+	</div>
+	<h3 class="banner">Off the R.A.I.L.S.</h3>
+	<div class="header_right">
+		<nav class="menu">
+  			<ul class="navbar" >
+  					<li><%= link_to "Home", root_path %></li>
+					<li><%= link_to "About", about_path %></li>
+					<li><%= link_to "Maps", location_path %></li>
+				<% if logged_in? %>
+					<li><%= link_to "Profile", current_u %></li>
+					<li><%= link_to "Settings", '#' %></li>
+					<li><%= link_to "Log out", logout_path, method: :delete %></li>
+				<% else %>
+					<li><%= link_to "Log in", login_path %></li>
+				<% end %>
+    		</ul> 
+		</nav>
+	</div>
 
-			<% if logged_in? %>
-			<li><%= link_to "Profile", current_u %></li>
-			<li><%= link_to "Settings", '#' %></li>
-			<li><%= link_to "Log out", logout_path, method: :delete %></li>
-			<% else %>
-			<li><%= link_to "Log in", login_path %></li>
-			<% end %>
-
-    	</ul> 
-	</nav>
 </header>
