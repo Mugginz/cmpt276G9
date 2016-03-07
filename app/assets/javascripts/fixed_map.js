@@ -1,6 +1,12 @@
 //This is a fixed course. User must start at first marker, and vsiit each checkpoint in order, else checkpoints will not register when reached.
 /*to implement: -identify start and end markers. (later update: markers display numbers)
                 -do not draw polyline if user does not begin at first marker. i.e. don't draw line as user is heading to the course
+                -turn invisible markers that are not checkpoints (so more markers can be used to make course more smooth)
+*/
+/*'maybe' issues: 1) Actual user travelled path will not match exactly with course path, thus results in displaying 2 paths between checkpoints.
+                    Solution: Upon reaching checkpoint: a) replace actual travelled path with the course path segment of green color.
+                                                        b) keep actual user travelled path; only replace when user refresh page.
+                          current implementation -->    c) keep actual user travelled path, and show green course path segment. (Too messy?)
 */
 function initialize(){
 
