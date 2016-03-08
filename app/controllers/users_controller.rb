@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :logged_in_u, only: [:edit, :update]
+  before_action :correct_u, only: [:edit, :update]
 
   def show
   	@u = User.find(params[:id])
@@ -38,4 +40,18 @@ class UsersController < ApplicationController
   		params.require(:user).permit(:name, :email, :password, :password_confirmation)
   	end
 
+    def logged_in_u
+      unless logged_in?
+        cache_location
+        flash[:danger] = "Please log in first."
+        redirect_to login_url
+      end
+    end
+
+    def correct_u
+      @u = User.find(params[:id])
+      unless @u == current_u
+        redirect_to(root_url)
+      end
+    end
 end

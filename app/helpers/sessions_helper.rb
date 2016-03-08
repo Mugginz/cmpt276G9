@@ -36,4 +36,14 @@ module SessionsHelper
 	def logged_in?
 		!current_u.nil?
 	end
+
+	def cache_location
+	    session[:forwarding_url] = request.url if request.get?
+	end
+
+	def redirect_back(default)
+	    redirect_to(session[:forwarding_url] || default)
+    	session.delete(:forwarding_url)
+    end
+
 end
