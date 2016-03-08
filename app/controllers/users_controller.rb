@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def show
   	@u = User.find(params[:id])
   end
@@ -18,6 +19,19 @@ class UsersController < ApplicationController
   	end
   end
 
+  def edit
+    @u = User.find(params[:id])
+  end
+
+  def update
+    @u = User.find(params[:id])
+    if @u.update_attributes(u_params)
+      flash[:success] = "Profile updated."
+      redirect_to @u
+    else
+      render 'edit'
+    end
+  end
 
   private
   	def u_params

@@ -22,10 +22,10 @@ module SessionsHelper
 	end
 
 	def current_u
-		if session[:uid]
-			@current_u ||= User.find_by(id: session[:uid])
-		elsif cookies.signed[:uid]
-			u = User.find_by(id: cookies.signed[:uid])
+		if (uid = session[:uid])
+			@current_u ||= User.find_by(id: uid)
+		elsif (uid = cookies.signed[:uid])
+			u = User.find_by(id: uid)
 			if u && u.authenticated?(cookies[:remember_token])
 				log_in(u)
 				@current_u = u
