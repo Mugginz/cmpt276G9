@@ -21,6 +21,7 @@ module SessionsHelper
 		@current_u = nil
 	end
 
+	# Return currently logged in user.
 	def current_u
 		if (uid = session[:uid])
 			@current_u ||= User.find_by(id: uid)

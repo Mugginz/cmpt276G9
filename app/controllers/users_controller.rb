@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_u, only: [:edit, :update]
-  before_action :correct_u, only: [:edit, :update]
+  before_action :logged_in_u, only: [:edit, :update, :destroy]
+  before_action :correct_u, only: [:edit, :update, :destroy]
 
   def show
   	@u = User.find(params[:id])
@@ -35,6 +35,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "Account deletion successful."
+    redirect_to(root_url)
+  end
+
   private
   	def u_params
   		params.require(:user).permit(:name, :email, :password, :password_confirmation)
@@ -51,6 +57,7 @@ class UsersController < ApplicationController
     def correct_u
       @u = User.find(params[:id])
       unless @u == current_u
+# edit redirection route
         redirect_to(root_url)
       end
     end
