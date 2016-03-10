@@ -1,5 +1,8 @@
 <header class="header">
-	<h3 class="banner" style ="text-align: center;">276 Group 9</h3>
+	<div class="banner">
+	<h2><%= link_to "Promptitude", root_path, :class => "app_name" %><h2>
+	<h3>by GroupNine</h3>
+	</div>
 
 <div class="dropdown">
 	<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
@@ -9,7 +12,7 @@
 	  		
 				<% if logged_in? %>
 				<li><%= link_to "Profile", current_u %></li>
-				<li><%= link_to "Settings", '#' %></li>
+				<li><%= link_to "Settings", edit_user_path(current_u) %></li>
 				<li><%= link_to "Log out", logout_path, method: :delete %></li>
 				
 				<% else %>
