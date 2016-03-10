@@ -16,10 +16,11 @@
 
 /* --- show --- */
 .profile_container {
-	text-align: center;
+	text-align: left;
 	border: 1px solid gray;
 	border-radius: 5px;
 	margin: 30px 10px 30px 10px;
+	padding-left:30px;
 }
 
 .user_identity {
@@ -29,4 +30,7 @@
 
 .user_profile {
 	clear: left;
+}
+table,th,td{
+	border: 1px solid black;
 }
