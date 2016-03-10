@@ -2,56 +2,65 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body{
+html, body{
 	width: 100%;
+	height: 100%;
 	margin: 0;
 	padding: 0;
 	border: none;
 }
 
-
 /* --- Header --- */
 .header {
 	width: 100%;
 	text-align: right;
-	background-color: gray;
-	padding: 5px 0 20px 0;
+	background-color: lightgray;
+	padding: 5px 0 5px 0;
 	color: white;
 	margin: 0;
 }
-
+.banner {
+	text-align: center;
+	margin: 7px 0 7px 0;
+	background-color: darkgreen;
+	height: 80px;
+}
 .logo_image{
 	float:left;
 	width:170px;
 	height:80px;
 	padding-left:100px;
+	display: inline;
 }
-
-.banner {
-	text-align: center;
-	margin: 7px 10px 7px 10px;
+.app_title{
+	width: 40%;
+	min-width: 320px;
+	margin: auto;
+	outline: 1px solid black;
+	height: 80px;
 }
 .app_name{
 	color: white;
-	font-style: italic;
+	font-style: bold;
+	text-decoration: none;
 }
-
 
 /* --- Footer --- */
 .footer {
 	width: 100%;
 	text-align: center;
 	padding: 5px 0 20px 0;
-	line-height: 2;
+	line-height: 1.5;
 	overflow: hidden;
 	padding: 0;
 }
-
 hr{
-	margin: 0 0 10px 0;
+	margin: 5px 1% 5px 1%;
+	height: 1px;
+	color: lightgray;
 }
 .menu{
-	padding-top:10px;
+	padding: 0 0 0 0;
 }
 .menu ul {
 	margin: 0;
@@ -61,23 +70,20 @@ hr{
 	display:inline;
 }
 .menu ul li a {
-	background-color: navy;
+	background-color: darkgreen;
 	color: white;
 	text-decoration: none;
 	font-family: sans-serif;
 	border-radius: 3px;
 	padding: 5px 10px;
-	
 }
-
 .menu ul li a:hover {
-	background-color: blue;
+	background-color: green;
 }
 .menu ul li a:active {
-	background-color: navy;
+	background-color: darkgreen;
 	box-shadow: inset 0 0 7px 1px black;
 }
-
 .mission_statement{
 	margin-left: 8%;
 	float: left;
@@ -91,14 +97,12 @@ hr{
 	clear: both;
 }
 
-
 /* --- Yield Container --- */
 .content {
 	width: 90vw;
 	min-width: 320px;
 	margin:auto;
 	text-align: center;
-	background-color: lightgray;
-	min-height: 240px;
-	overflow: hidden;
+	min-height: 180px;
 }
+

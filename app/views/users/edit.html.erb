@@ -1,4 +1,4 @@
-<% provide(:title, "Edit user") %>
+<% provide(:title, "Edit Account") %>
 <h2>Update profile</h2>
 
 <div class="alteration">
@@ -9,7 +9,7 @@
   </div>
 
   <%= form_for(@u) do |f| %>
-    <!-- %= render 'shared/error_messages' % -->
+    <%= render 'shared/error_messages' %>
 
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+# Filters required for authorizing user's actions.
   before_action :logged_in_u, only: [:edit, :update, :destroy]
   before_action :correct_u, only: [:edit, :update, :destroy]
 
@@ -57,7 +59,7 @@ class UsersController < ApplicationController
     def correct_u
       @u = User.find(params[:id])
       unless @u == current_u
-# edit redirection route
+# ** edit redirection route
         redirect_to(root_url)
       end
     end
