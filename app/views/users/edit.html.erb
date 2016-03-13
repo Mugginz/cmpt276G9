@@ -1,0 +1,31 @@
+<% provide(:title, "Edit Account") %>
+<h2>Update profile</h2>
+
+<div class="alteration">
+
+  <div class="avatar_edit">
+    <%= avatar_for @u %>
+    <a href="http://gravatar.com/emails" target="_blank">change</a>
+  </div>
+
+  <%= form_for(@u) do |f| %>
+    <%= render 'shared/error_messages' %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control' %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+
+    <%= f.label :password_confirmation, "Confirm Password" %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+    <%= f.submit "Save changes", class: "btn" %>
+  <% end %>
+
+  <%= link_to "Delete Account", @u, method: :delete, data: { confirm: "Are you sure?"} %>
+  
+</div>

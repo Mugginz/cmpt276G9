@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+
+# Filters required for authorizing user's actions.
+  before_action :logged_in_u, only: [:edit, :update, :destroy]
+  before_action :correct_u, only: [:edit, :update, :destroy]
+
   def show
   	@u = User.find(params[:id])
   end
@@ -18,10 +23,44 @@ class UsersController < ApplicationController
   	end
   end
 
+  def edit
+    @u = User.find(params[:id])
+  end
+
+  def update
+    @u = User.find(params[:id])
+    if @u.update_attributes(u_params)
+      flash[:success] = "Profile updated."
+      redirect_to @u
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "Account deletion successful."
+    redirect_to(root_url)
+  end
 
   private
   	def u_params
   		params.require(:user).permit(:name, :email, :password, :password_confirmation)
   	end
 
+    def logged_in_u
+      unless logged_in?
+        cache_location
+        flash[:danger] = "Please log in first."
+        redirect_to login_url
+      end
+    end
+
+    def correct_u
+      @u = User.find(params[:id])
+      unless @u == current_u
+# ** edit redirection route
+        redirect_to(root_url)
+      end
+    end
 end

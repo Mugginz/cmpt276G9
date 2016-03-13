@@ -1,6 +1,6 @@
 module ApplicationHelper
 	def full_title(partial_title = "")
-		base_title = "Group 9"
+		base_title = "GroupNine"
 		if partial_title.empty?
 			base_title
 		else
