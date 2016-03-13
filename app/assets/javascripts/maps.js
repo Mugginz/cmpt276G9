@@ -1,7 +1,7 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-`
+// # Place all the behaviors and hooks related to the matching controller here.
+// # All this logic will automatically be available in application.js.
+// # You can use CoffeeScript in this file: http://coffeescript.org/
+
 //This is a fixed course. User must start at first marker, and vsiit each checkpoint in order, else checkpoints will not register when reached.
 /*to implement: -identify start and end markers. (later update: markers display numbers)
                 -do not draw polyline if user does not begin at first marker. i.e. don't draw line as user is heading to the course
@@ -169,5 +169,3 @@ map.setCenter(fixedCoordsArray[1]); //for test course1
       }
     }
   }
-
-`
