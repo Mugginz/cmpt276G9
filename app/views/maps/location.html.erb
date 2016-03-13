@@ -2,15 +2,12 @@
 <% provide(:title, "Location") %>
 
 <head>
-  <%= javascript_include_tag "fixed_map" %>
-  <!-- In config/initializers/assets.rb include line:
-	Rails.application.config.assets.precompile += %w( <script_name>.js ) -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <% render 'layouts/shim' %>
 
   <script src="https://maps.googleapis.com/maps/api/js?&callback=initialize" async defer>
   </script>
-
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <% render 'layouts/shim' %>
 </head>
 
 <body class="body_map">
