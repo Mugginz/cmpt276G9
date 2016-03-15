@@ -1,15 +1,15 @@
-276G9
+Promptitude
 =====
 Simon Fraser University  
 CMPT 276, Spring 2016
 
 Overview
 -----
-Ruby on Rails web app.  
+Promptitude is an online app allowing users to enahnce their experience with exercise and fitness routines.
 
 Documentation
 -----
-Current deployed build:  
+Current build:  
 [Alpha](http://cmpt276-group9.herokuapp.com/)  
 
 
@@ -28,11 +28,12 @@ $ rake db:migrate;
 
 Authors
 -----
-Jason Coo   
-Liangze Hao  
-Cesare Liu  
-Braeden Mulligan  
-Dan Wan  
+Jason Coo,   
+Liangze Hao,  
+Cesare Liu,  
+Braeden Mulligan,  
+Dan Wan,  
+with thanks to Michael Hartl for providing a great beginners [guide](https://www.railstutorial.org/book) to Ruby on Rails.
 
 Change Log
 -----
