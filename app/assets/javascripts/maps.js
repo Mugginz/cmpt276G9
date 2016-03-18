@@ -7,6 +7,11 @@
                 -turn invisible markers that are not checkpoints (so more markers can be used to make course more smooth)
                 -use numbered icons as markers
 */
+
+function coords(c){
+  document.getElementById("para").innerHTML = c[0];
+}
+
 function initialize(){
 
   //setting up initial map of Vancouver

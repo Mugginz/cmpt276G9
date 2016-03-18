@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   #get 'about' => 'statics#about'
   get 'help' => 'statics#help'
   get 'signup' => 'users#new'
+  get 'course' => 'maps#course'
 
+  resources :courses
   resources :users
 
   root 'statics#home'

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!--Objective: custom route making; just click on map to add markers and they will link up.-->
+<head>
+	<title>Course</title>
+	
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<% render 'layouts/shim' %>
+</head>
+
+<body class="body_map">
+	<% nodes = @c.coordinates %>
+	<%= render 'layouts/header' %>
+
+  	<p id="para" onClick="coords( <%= nodes %> )", style="background-color: pink; width: 80%; margin: auto;">
+  		hi
+	</p>
+
+</body>
+
+<%= debug(params) if Rails.env.development? %>
