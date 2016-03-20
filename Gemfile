@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.3.0'
 
 gem 'bcrypt', '>= 3.1.7'
 
@@ -45,7 +45,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
-  gem 'debugger'
+  gem 'byebug'
 	gem 'minitest-reporters', '1.0.5'
 	gem 'mini_backtrace',     '0.1.3'
 	gem 'guard-minitest',     '2.3.1'

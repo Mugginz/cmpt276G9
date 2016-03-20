@@ -1,17 +1,6 @@
 <header class="header">
-<<<<<<< HEAD
-
-
 <div class="banner">
-	<!--
-	<div class="logo_image">
-		<= link_to image_tag("/assets/logo.png",style:'width:100%;height:100%;',alt:"Promptitude Logo"), root_path %>
-	</div>
-	<div class="app_title">
-		<h2><= link_to "Promptitude", root_path, :class => "app_name" %><h2>
-		<h3>by GroupNine</h3>
-	</div>
--->
+
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -34,69 +23,8 @@
 								<% end %>
 				<% end %>
 			</ul>
-		  </div>
+		</div>
 </nav>
-=======
-	
-<div class="banner">
-	<div class="logo_image">
-		<%= link_to image_tag("/assets/logo.png",style:'width:100%;height:100%;',alt:"Promptitude Logo"), root_path %>
-	</div>
-	<div class="app_title">
-		<h2><%= link_to "Promptitude", root_path, :class => "app_name" %><h2>
-		<h3>by GroupNine</h3>
-	</div>
-</div>
->>>>>>> mapview
 
-</div>
-
-<!--
-<div class="dropdown">
-	<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
-	  <div id="myDropdown" class="dropdown-content">
-<<<<<<< HEAD
-	  	
-	  		<li><= link_to "Maps", location_path %></li>
-	  		
-				< if logged_in? %>
-				<li><= link_to "Profile", current_u %></li>
-				<li><= link_to "Settings", '#' %></li>
-				<li><= link_to "Log out", logout_path, method: :delete %></li>
-=======
-	  		<li><%= link_to "Maps", location_path %></li>
-				<% if logged_in? %>
-				<li><%= link_to "Profile", current_u %></li>
-				<li><%= link_to "Settings", edit_user_path(current_u) %></li>
-				<li><%= link_to "Log out", logout_path, method: :delete %></li>
->>>>>>> mapview
-				
-				< else %>
-				<li><= link_to "Log in", login_path %></li>
-				
-				< end %>
-	  </div>
-</div>
--->
-
-<script>
-function dropdown() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-</script>
 
 </header>
