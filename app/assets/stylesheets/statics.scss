@@ -20,36 +20,30 @@ html, body{
 /* --- Header --- */
 .header {
 	width: 100%;
-	text-align: right;
-	background-color: lightgray;
+	height:100px;
+	background-color: #6666FF;
 	padding: 5px 0 5px 0;
 	color: white;
 	margin: 0;
 }
-.banner {
-	text-align: center;
-	margin: 7px 0 7px 0;
-	background-color: darkgreen;
-	height: 80px;
-}
 .logo_image{
 	float:left;
-	width:170px;
+	width:150px;
 	height:80px;
-	padding-left:100px;
+	margin-left:100px;
 	display: inline;
 }
-.app_title{
-	width: 40%;
-	min-width: 320px;
-	margin: auto;
-	outline: 1px solid black;
-	height: 80px;
-}
 .app_name{
-	color: white;
+	text-align:center;
+	color: black;
 	font-style: bold;
 	text-decoration: none;
+	margin-right:250px;
+}
+.navbar{
+	color:black;
+	float:right;
+	margin-right:100px;
 }
 /* --- Home Page Content --- */
 #home_page_content_left {
