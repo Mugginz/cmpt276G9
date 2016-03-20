@@ -7,11 +7,22 @@
                 -turn invisible markers that are not checkpoints (so more markers can be used to make course more smooth)
                 -use numbered icons as markers
 */
-
 function coords(c){
   document.getElementById("para").innerHTML = c[0];
-}
 
+};
+
+$("document").ready(function() {
+
+  $("#para").click(function() {
+    $("#para").css("background-color", "cyan");
+    $("#para").append("<p>Testp</p>");
+  });
+
+
+});
+
+/*
 function initialize(){
 
   //setting up initial map of Vancouver
@@ -20,13 +31,16 @@ function initialize(){
     zoom: 19
   });
 
+}
+*/
+
   //test course1: sfu parking lot by ASB  //passed
 /*  var fixedCoordsArray = [
     {lat: 49.277575, lng: -122.912986},
     {lat: 49.277460, lng: -122.912310},
     {lat: 49.277365, lng: -122.911674}
   ];
-*/
+
 //Course 1: Hastings Community Park
 var fixedCoordsArray = [
   {lat: 49.28113, lng: -123.03621}, //49.281095, -123.036216
@@ -187,3 +201,4 @@ var fixedCoordsArray = [
       }
     }
   }
+*/
