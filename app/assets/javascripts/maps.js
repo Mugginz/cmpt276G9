@@ -7,16 +7,45 @@
                 -turn invisible markers that are not checkpoints (so more markers can be used to make course more smooth)
                 -use numbered icons as markers
 */
-function coords(c){
-  document.getElementById("para").innerHTML = c[0];
+var ctmp = [];
 
+function coords(c){
+  if(c[0][0] == 2 ){
+    c[0] = [20,30];
+  }else{
+    c[0] = [2,3];
+  };
+  document.getElementById("para").innerHTML = JSON.stringify(c);
+
+  ctmp = c;
+  return c;
 };
 
 $("document").ready(function() {
 
   $("#para").click(function() {
     $("#para").css("background-color", "cyan");
-    $("#para").append("<p>Testp</p>");
+    var e = $('<p>Appended text </p>');
+    $("#para").append(e);
+    e.attr("id", "p2");
+  });
+
+  $("#bt").click(function(){
+
+    var pack = JSON.stringify(ctmp);
+    alert("data package: " + pack);
+    $.ajax({
+      type: "PATCH",
+      url: "/course",
+      data: {coords: pack},
+      success: function(){
+        alert("posted");
+      },
+      error: function(){
+        alert("fail");
+      }
+    });
+
   });
 
 

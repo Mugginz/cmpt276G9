@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--Objective: custom route making; just click on map to add markers and they will link up.-->
+
 <head>
 	<title>Course</title>
 	
@@ -13,8 +13,11 @@
 	<%= render 'layouts/header' %>
 
   	<p id="para" onClick="coords( <%= nodes %> )", style="background-color: pink; width: 80%; margin: auto;">
-  		hi
+  		<%= nodes %>
 	</p>
+	<button id="bt", style="background-color: orange;">
+		submit
+	</button>
 
 </body>
 
