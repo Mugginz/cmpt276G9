@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.3.0'
+#ruby '1.9.3'
+#if asked to lower ruby version use:
+#rvm use 1.9.3
 
 gem 'bcrypt', '>= 3.1.7'
 
