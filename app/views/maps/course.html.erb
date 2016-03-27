@@ -2,14 +2,13 @@
 
 <head>
 	<title>Course</title>
-	
+
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<% render 'layouts/shim' %>
 </head>
 
 <% nodes = @c.coordinates %>
-
 <body class="body_map">
 	<div id="map"></div>
 
@@ -35,9 +34,13 @@
 			submit
 		 </button>
 	</div>
-
 	
-
+  	<p id="para" onClick="coords( <%= nodes %> )", style="background-color: pink; width: 80%; margin: auto;">
+  		<%= nodes %>
+	</p>
+	<button id="bt", style="background-color: orange;">
+		submit
+	</button>
 </body>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ&callback=initialize" async defer>

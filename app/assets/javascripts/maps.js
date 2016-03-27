@@ -4,13 +4,13 @@
 //
 
 // --- AJAX Prototying
-var ctmp = [];
+var coordsArray = [[49.28113,-123.03621],[49.28113,-123.03747],[49.28113,-123.03880],[49.28063,-123.03880],[49.28022,-123.03880],[49.28022,-123.03754],[49.28022,-123.03623]];
 
 function coords(c){
-  if(c[0][0] == 2 ){
+  if(c[0][0] == 4 ){
     c[0] = [20,30];
   }else{
-    c[0] = [2,3];
+    c[0] = [2,4];
   };
   document.getElementById("para").innerHTML = JSON.stringify(c);
 
@@ -45,6 +45,7 @@ $("document").ready(function() {
 
 });
 // --- ---
+*/
 
 // --- G-Maps API functions 
 function initialize(){
