@@ -8,17 +8,39 @@
 	<% render 'layouts/shim' %>
 </head>
 
-<body class="body_map">
-	<% nodes = @c.coordinates %>
-	<%= render 'layouts/header' %>
+<% nodes = @c.coordinates %>
 
-  	<p id="para" onClick="coords( <%= nodes %> )", style="background-color: pink; width: 80%; margin: auto;">
-  		<%= nodes %>
-	</p>
-	<button id="bt", style="background-color: orange;">
-		submit
-	</button>
+<body class="body_map">
+	<div id="map"></div>
+
+	<div class="panel">
+		<%= link_to "Home", root_path %>
+		<div class="dropdown">
+			<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
+	  		<div id="myDropdown" class="dropdown-content">
+	  			<% if logged_in? %>
+					<li><%= link_to "Profile", current_u %></li>
+					<li><%= link_to "Settings", edit_user_path(current_u) %></li>
+					<li><%= link_to "Log out", logout_path, method: :delete %></li>
+				<% else %>
+					<li><%= link_to "Log in", login_path %></li>
+				<% end %>
+	  		</div>
+		</div>
+
+		<div class="course_list" id="para" onClick="coords( <%= nodes %> )">
+			Course selection: <%= nodes %>
+		</div>
+		<button id="bt", style="background-color: orange;">
+			submit
+		 </button>
+	</div>
+
+	
 
 </body>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ&callback=initialize" async defer>
+</script>
 
 <%= debug(params) if Rails.env.development? %>

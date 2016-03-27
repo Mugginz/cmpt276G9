@@ -1,12 +1,9 @@
 // # Place all the behaviors and hooks related to the matching controller here.
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
+//
 
-//This is a fixed course. User must start at first marker, and vsiit each checkpoint in order, else checkpoints will not register when reached.
-/*to implement: -do not draw polyline if user does not begin at first marker. i.e. don't draw line as user is heading to the course
-                -turn invisible markers that are not checkpoints (so more markers can be used to make course more smooth)
-                -use numbered icons as markers
-*/
+// --- AJAX Prototying
 var ctmp = [];
 
 function coords(c){
@@ -31,7 +28,6 @@ $("document").ready(function() {
   });
 
   $("#bt").click(function(){
-
     var pack = JSON.stringify(ctmp);
     alert("data package: " + pack);
     $.ajax({
@@ -45,30 +41,28 @@ $("document").ready(function() {
         alert("fail");
       }
     });
-
   });
 
-
 });
+// --- ---
 
-/*
+// --- G-Maps API functions 
 function initialize(){
 
   //setting up initial map of Vancouver
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 49.2827, lng: -123.1207},
-    zoom: 19
+    zoom: 18
   });
 
-}
-*/
-
+/*
   //test course1: sfu parking lot by ASB  //passed
-/*  var fixedCoordsArray = [
+  var fixedCoordsArray = [
     {lat: 49.277575, lng: -122.912986},
     {lat: 49.277460, lng: -122.912310},
     {lat: 49.277365, lng: -122.911674}
   ];
+*/
 
 //Course 1: Hastings Community Park
 var fixedCoordsArray = [
@@ -230,4 +224,4 @@ var fixedCoordsArray = [
       }
     }
   }
-*/
+// --- ---
