@@ -108,12 +108,11 @@ html, body{
 	padding: 5px 0 20px 0;
 	line-height: 1.5;
 	overflow: hidden;
-	padding: 0;
 	background-color: #06000a;
 	color: #e6e6e8;
+	margin-top:-50px;
 }
 hr{
-	margin: 5px 1% 5px 1%;
 	height: 1px;
 	color: gray;
 }
@@ -157,7 +156,6 @@ hr{
 
 /* --- Yield Container --- */
 .content {
-	//width: 90%;
 	min-width: 320px;
 	margin:auto;
 	text-align: center;
