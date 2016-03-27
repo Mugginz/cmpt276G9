@@ -9,8 +9,13 @@ Rails.application.routes.draw do
   get 'news' => 'statics#news'
   get 'help' => 'statics#help'
   get 'signup' => 'users#new'
+  
+  get 'course' => 'maps#course'
+  post 'course' => 'maps#update'
+  patch 'course' => 'maps#update'
 
   resources :users
+  resources :courses
 
   root 'statics#home'
 
