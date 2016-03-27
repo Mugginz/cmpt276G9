@@ -45,7 +45,6 @@ $("document").ready(function() {
 
 });
 // --- ---
-*/
 
 // --- G-Maps API functions 
 function initialize(){

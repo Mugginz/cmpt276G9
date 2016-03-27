@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
 
 # Filters required for authorizing user's actions.
-  before_action :logged_in_u, only: [:edit, :update, :destroy]
+  before_action :logged_in_u, only: [:index ,:edit, :update, :destroy]
   before_action :correct_u, only: [:edit, :update, :destroy]
 
   def show
   	@u = User.find(params[:id])
+  end
+
+  def index
+    @users = User.all
   end
 
   def new
@@ -25,6 +29,9 @@ class UsersController < ApplicationController
 
   def edit
     @u = User.find(params[:id])
+    if current_u.admin? && (@u != current_u)
+      redirect_to(@u)
+    end
   end
 
   def update
@@ -40,7 +47,11 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "Account deletion successful."
-    redirect_to(root_url)
+    if current_u.admin?
+      redirect_to(users_url)
+    else
+      redirect_to(root_url)
+    end
   end
 
   private
@@ -58,9 +69,10 @@ class UsersController < ApplicationController
 
     def correct_u
       @u = User.find(params[:id])
-      unless @u == current_u
+      unless (@u == current_u) || current_u.admin? 
 # ** edit redirection route
         redirect_to(root_url)
       end
     end
+
 end
