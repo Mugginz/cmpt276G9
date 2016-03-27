@@ -11,18 +11,16 @@
 var coordsArray =[];
 
 function coords(c){
-//  alert(c[0][1]);
-//alert(c.length);
+//    alert(c[0][1]);
+//    alert(c.length);
 
   for (i=0; i< c.length; i++){
 //    coordsArray[i] = "{lat:"+ c[i][0]+","+ "lng:" +c[i][1]+"}";
     coordsArray[i] = {lat: c[i][0] ,lng: c[i][1]};
   }
-//  alert(coordsArray);
+//    alert(coordsArray);
 
 };
-
-
 
 ////////////^^^^^ fetching coords from DB ^^^^^^^////////////////
 
@@ -32,20 +30,20 @@ function coords(c){
   var ctmp = [[49.28113,-123.03621],[49.28113,-123.03747],[49.28113,-123.03880],[49.28063,-123.03880],[49.28022,-123.03880],[49.28022,-123.03754],[49.28022,-123.03623]];
 
 function coords(c){
-//      alert(c[0][0]);
-//    alert(c);
+//          alert(c[0][0]);
+//          alert(c);
 
-//  if(c[0][0] == 4 ){
-//    c[0] = [20,30];
-//  }else{
-//    c[0] = [2,4];
+  if(c[0][0] == 4 ){
+    c[0] = [20,30];
+  }else{
+    c[0] = [2,4];
 
 
-//  };
-//  document.getElementById("para").innerHTML = JSON.stringify(c);
+  };
+  document.getElementById("para").innerHTML = JSON.stringify(c);
 
-//  ctmp = c;
-//  return c;
+  ctmp = c;
+  return c;
 };
 
 $("document").ready(function() {
