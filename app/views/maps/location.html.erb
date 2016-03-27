@@ -11,15 +11,18 @@
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <% render 'layouts/shim' %>
-  <%= render 'layouts/header' %>
+
 
 </head>
 
-<body class="body_map">
-  <div class="container">
-      <h3>The map</h3>
-      <div id ="map">
-      </div>
+<body >
+    <%= render 'layouts/header' %>
+  <div class="body_map">
+    <div class="container">
+        <h3>The map</h3>
+        <div id ="map">
+        </div>
+    </div>
   </div>
 </body>
 
