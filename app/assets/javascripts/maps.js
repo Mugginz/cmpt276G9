@@ -10,10 +10,14 @@
 var ctmp = [];
 
 function coords(c){
-  if(c[0][0] == 2 ){
+//      alert(c[0][0]);
+    alert(c);
+  if(c[0][0] == 4 ){
     c[0] = [20,30];
   }else{
-    c[0] = [2,3];
+    c[0] = [2,4];
+
+
   };
   document.getElementById("para").innerHTML = JSON.stringify(c);
 
@@ -40,9 +44,11 @@ $("document").ready(function() {
       data: {coords: pack},
       success: function(){
         alert("posted");
+
       },
       error: function(){
         alert("fail");
+
       }
     });
 

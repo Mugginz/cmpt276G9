@@ -13,6 +13,12 @@ class MapsController < ApplicationController
 
   def update
   	@c = Course.find(1)
+#    if @c.update_attributes(c_params)
+#    if @c.update(coordinates: '{{4,4}}')
+#      flash[:success] = "Profile updated."
+#    else
+#      render 'home'
+#    end
 	package = params[:coords]
 	arr = eval(package)
 # Comparison used for debugging.
@@ -22,7 +28,23 @@ class MapsController < ApplicationController
 	else
 		render 'course'
 	end
+
+      if @c.update_attributes(coordinates: arr)
+        flash[:success] = "Profile updated."
+      else
+        render 'home'
+      end
+
   end
+
+
+  private
+    def c_params
+#      params.require(:c).permit(:coordinates)
+#      params.permit(:coordinates)
+      params.require(:c).permit(:name, :region, :coordinates)
+
+    end
 
 
 end
