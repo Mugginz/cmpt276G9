@@ -29,3 +29,18 @@
 table,th,td{
 	border: 1px solid black;
 }
+
+/* --- index --- */
+.all_users{
+	list-style: none;
+	margin:0;
+}
+.all_users li {
+	overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid lightgray;
+}
+.avatar {
+	height: 40px;
+	width: 40px;
+}
