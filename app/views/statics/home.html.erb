@@ -1,17 +1,19 @@
 <% provide(:title, "Home") %>
 
-<p class="home_page_text">Hello,</p>
-<p class="home_page_text">and welcome to Promptitude.</p>
-<div id="home_page_content_left">
-    <img src="/assets/home_page_1.png" alt="Introduction_1">
-    <p>This is Part1.</p>
-</div>
-<div id="home_page_content_middle">
-    <img src="/assets/home_page_2.png" alt="Introduction_2">
-    <p>This is Part2.</p>
-</div>
-<div id="home_page_content_right">
-    <img src="/assets/home_page_3.png" alt="Introduction_3">
-    <p>This is Part3.</p>
-</div>
+<h2 style="text-align:center; color:#e6e6e8">Welcome to Promptitude.</h2>
 
+<div class= "table-responsive">
+<table class='table table-borderless'>
+    <tr>
+    <td class="home_page_content"> <%= link_to image_tag("/assets/new_home_page_1.png",style:'width:50%;height:100%;',alt:"Introduction_1"), signup_url %> </td>
+    <td class="home_page_content"> <%= link_to image_tag("/assets/new_home_page_2.png",style:'width:65%;height:100%;',alt:"Introduction_2"), location_path %> </td>
+    <td class="home_page_content"> <%= link_to image_tag("/assets/new_home_page_3.png",style:'width:65%;height:100%;',alt:"Introduction_2"), root_path %> </td>
+    </tr>
+    <tr>
+        <td class="home_page_content"> <h4>1. Sign Up</h4></td>
+        <td class="home_page_content"> <h4>2. Pick a course</h4></td>
+        <td class="home_page_content"> <h4>3. Run!!</h4></td>
+    </tr>
+
+</table>
+</div>
