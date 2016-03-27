@@ -7,25 +7,24 @@
     <%= avatar_for @u %>
     <a href="http://gravatar.com/emails" target="_blank">change</a>
   </div>
-
+ <div id="edit_profile">
   <%= form_for(@u) do |f| %>
     <%= render 'shared/error_messages' %>
+    <div class="edit_input>">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
 
-    <%= f.label :email %>
-    <%= f.email_field :email, class: 'form-control' %>
-
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
-
-    <%= f.label :password_confirmation, "Confirm Password" %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-
+      <%= f.label :password_confirmation, "Confirm Password" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+    </div>
     <%= f.submit "Save changes", class: "btn" %>
   <% end %>
 
   <%= link_to "Delete Account", @u, method: :delete, data: { confirm: "Are you sure?"} %>
-  
+  </div>
 </div>

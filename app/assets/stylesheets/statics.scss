@@ -20,7 +20,7 @@ html, body{
 /* --- Header --- */
 .header {
 	width: 100%;
-	height:100px;
+	height:110px;
 	background-color: #6666FF;
 	padding: 5px 0 5px 0;
 	color: white;
@@ -46,6 +46,9 @@ html, body{
 	margin-right:100px;
 }
 /* --- Home Page Content --- */
+.home_page_text{
+	color:white;
+}
 #home_page_content_left {
 	float:left;
 	width:30%;
