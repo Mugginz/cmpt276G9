@@ -1,14 +1,8 @@
+<!DOCTYPE html>
 <!--Objective: custom route making; just click on map to add markers and they will link up.-->
-<% provide(:title, "Location") %>
-
 <head>
-  <%= javascript_include_tag "fixed_map" %>
-  <!-- In config/initializers/assets.rb include line:
-	Rails.application.config.assets.precompile += %w( <script_name>.js ) -->
-
-  <script src="https://maps.googleapis.com/maps/api/js?&callback=initialize" async defer>
-  </script>
-
+	<title>Courses</title>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <% render 'layouts/shim' %>
 
@@ -26,6 +20,7 @@
   </div>
 </body>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ&callback=initialize" async defer>
+</script>
+
 <%= debug(params) if Rails.env.development? %>
-
-

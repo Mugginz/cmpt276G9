@@ -2,7 +2,7 @@ require 'test_helper'
 
 class StaticsControllerTest < ActionController::TestCase
   def setup
-    @basetitle = "Group 9"
+    @basetitle = "GroupNine"
   end
 
   test "get home" do
