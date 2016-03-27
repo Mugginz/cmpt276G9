@@ -8,6 +8,8 @@
 	<% render 'layouts/shim' %>
 </head>
 
+
+<!-- vvvv Ajax Updating Working vvvv
 <body class="body_map">
 	<% nodes = @c.coordinates %>
 	<%= render 'layouts/header' %>
@@ -18,7 +20,21 @@
 	<button id="bt", style="background-color: orange;">
 		submit
 	</button>
-
 </body>
+-->
+
+<!-- Testing GET coords from database -->
+<body class="body_map">
+	<% nodes = @c.coordinates %>
+	<%= render 'layouts/header' %>
+
+	<p id="para" onClick="coords( <%= nodes %> )", style="background-color: pink; width: 80%; margin: auto;">
+		<%= nodes %>
+	</p>
+	<button id="bt", style="background-color: orange;">
+		submit
+	</button>
+</body>
+
 
 <%= debug(params) if Rails.env.development? %>
