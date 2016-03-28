@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   #get 'about' => 'statics#about'
   get 'help' => 'statics#help'
   get 'signup' => 'users#new'
-  
+
   get 'course' => 'maps#course'
   post 'course' => 'maps#update'
   patch 'course' => 'maps#update'
+  get 'selected' => 'maps#selected'
 
   resources :users
   resources :courses

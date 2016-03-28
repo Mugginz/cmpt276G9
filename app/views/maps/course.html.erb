@@ -8,7 +8,8 @@
 	<% render 'layouts/shim' %>
 </head>
 
-<% nodes = @c.coordinates %>
+
+<#% nodes = @c.coordinates %>
 <body class="body_map">
 	<div id="map"></div>
 
@@ -26,22 +27,54 @@
 				<% end %>
 	  		</div>
 		</div>
-
-		<div class="course_list" id="para" onClick="coords( <%= nodes %> )">
-			Course selection: <%= nodes %>
+<!--
+		<div class="course_list" id="para" onClick="coords( <%#= nodes %> )">
+			Course selection: <%#= nodes %>
 		</div>
 		<button id="bt", style="background-color: orange;">
 			submit
 		 </button>
+
 	</div>
-	
-  	<p id="para" onClick="coords( <%= nodes %> )", style="background-color: pink; width: 80%; margin: auto;">
-  		<%= nodes %>
+-->
+<!--
+  	<p id="para" onClick="coords( <%#= nodes %> )", style="background-color: pink; width: 80%; margin: auto;">
+  		<%#= nodes %>
 	</p>
 	<button id="bt", style="background-color: orange;">
 		submit
 	</button>
+-->
+<!--
 </body>
+-->
+<!--<<<<<< Updated upstream
+=======
+-->
+
+<!-- Testing GET coords from database -->
+<!--<body class="body_map"> -->
+<!--	<#% nodes = @c.coordinates %>
+	<#%= render 'layouts/header' %>
+
+	<p id="para" onClick="coords( <%#= nodes %> )", style="background-color: pink; width: 80%; margin: auto;">
+		<%#= nodes %>
+	</p>
+-->
+
+	<ul>
+	  <% @courses.each do |c| %>
+	    <li>
+	      <%= link_to c.name, selected_path(course_param: c.name) %>
+	    </li>
+	  <% end %>
+	</ul>
+</div>
+	<button id="bt",  style="background-color: orange;">
+		submit<%= link_to "Maps", location_path %>
+	</button>
+</body>
+>>>>>>> Stashed changes
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ&callback=initialize" async defer>
 </script>
