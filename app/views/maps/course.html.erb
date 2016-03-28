@@ -8,12 +8,12 @@
 	<% render 'layouts/shim' %>
 </head>
 
-<% nodes = @c.coordinates %>
 <body class="body_map">
 	<div id="map"></div>
 
 	<div class="panel">
 		<%= link_to "Home", root_path %>
+		<%= link_to "All courses", courses_path %>
 		<div class="dropdown">
 			<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
 	  		<div id="myDropdown" class="dropdown-content">
@@ -27,12 +27,8 @@
 	  		</div>
 		</div>
 
-		<div class="course_list" id="para" onClick="coords( <%= nodes %> )">
-			Course selection: <%= nodes %>
-		</div>
-		<button id="bt", style="background-color: orange;">
-			submit
-		 </button>
+		<div class="course_list"></div>
+
 	</div>
 
 </body>

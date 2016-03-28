@@ -16,7 +16,7 @@
 	<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
 	  <div id="myDropdown" class="dropdown-content">
 	  		<li><%= link_to "Maps", location_path %></li>
-	  		<li><%= link_to "Courses", course_path %></li>
+	  		<li><%= link_to "Courses", map_path %></li>
 				<% if logged_in? %>
 				<li><%= link_to "Profile", current_u %></li>
 				<li><%= link_to "Settings", edit_user_path(current_u) %></li>

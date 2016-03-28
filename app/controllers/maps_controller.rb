@@ -7,7 +7,6 @@ class MapsController < ApplicationController
   end
 
   def course
-	@c = Course.find(1)
   	render :layout => false
   end
 

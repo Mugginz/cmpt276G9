@@ -32,7 +32,7 @@ $("document").ready(function() {
     alert("data package: " + pack);
     $.ajax({
       type: "PATCH",
-      url: "/course",
+      url: "/map",
       data: {coords: pack},
       success: function(){
         alert("posted");
