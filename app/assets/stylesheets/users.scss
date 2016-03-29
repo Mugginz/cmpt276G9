@@ -1,7 +1,6 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 /* --- new --- */
 .registration {
 	margin: 0 0 20px 0;	
@@ -10,7 +9,9 @@
 	display: block;
 	margin: auto;
 }
-
+.form-control{
+	color: white;
+}
 /* --- show --- */
 .profile_container {
 	text-align: left;
@@ -24,12 +25,16 @@
 	margin: 0 0 0 50px;
 }
 .user_profile {
+	color:white;
 	clear: left;
 }
 table,th,td{
 	border: 1px solid black;
 }
-
+/*---  edit  ---*/
+#edit_profile .edit_input{
+	width:300px;
+}
 /* --- index --- */
 .all_users{
 	list-style: none;
