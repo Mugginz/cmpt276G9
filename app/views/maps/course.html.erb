@@ -9,11 +9,12 @@
 </head>
 
 <body class="body_map">
-	<div id="map"></div>
+	<div id="map" class="map"></div>
 
 	<div class="panel">
 		<%= link_to "Home", root_path %>
 		<%= link_to "All courses", courses_path %>
+		<%= link_to "Create course", create_path %>
 		<div class="dropdown">
 			<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
 	  		<div id="myDropdown" class="dropdown-content">

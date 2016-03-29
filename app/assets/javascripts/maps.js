@@ -55,15 +55,14 @@ function initialize(){
     zoom: 18
   });
 
-/*
   //test course1: sfu parking lot by ASB  //passed
   var fixedCoordsArray = [
     {lat: 49.277575, lng: -122.912986},
     {lat: 49.277460, lng: -122.912310},
     {lat: 49.277365, lng: -122.911674}
   ];
-*/
 
+/*
 //Course 1: Hastings Community Park
 var fixedCoordsArray = [
   {lat: 49.28113, lng: -123.03621}, //49.281095, -123.036216
@@ -74,6 +73,7 @@ var fixedCoordsArray = [
   {lat: 49.28022, lng: -123.03754}, //49.280225, -123.037540
   {lat: 49.28022, lng: -123.03623} //49.280225, -123.036234
 ];
+*/
 
   //array of markers
   var markersArray = [];
