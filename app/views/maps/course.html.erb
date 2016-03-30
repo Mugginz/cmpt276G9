@@ -11,31 +11,53 @@
 
 <% nodes = @c.coordinates %>
 <body class="body_map">
-	<div id="map"></div>
+<div id="map"></div>
+		<hr>
+	<div class="container">
 
-	<div class="panel">
-		<%= link_to "Home", root_path %>
-		<div class="dropdown">
-			<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
-	  		<div id="myDropdown" class="dropdown-content">
-	  			<% if logged_in? %>
+		<div class="btn-group dropup">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+		    Menu<span class="caret"></span>
+		  	</button>
+		  <ul class="dropdown-menu dropdown-menu-right" style="right: 0; left: auto;">
+		    		<li><%= link_to "Home", root_path %></li>
+			  	<% if logged_in? %>
 					<li><%= link_to "Profile", current_u %></li>
 					<li><%= link_to "Settings", edit_user_path(current_u) %></li>
 					<li><%= link_to "Log out", logout_path, method: :delete %></li>
 				<% else %>
 					<li><%= link_to "Log in", login_path %></li>
 				<% end %>
-	  		</div>
+		  </ul>
 		</div>
 
-		<div class="course_list" id="para" onClick="coords( <%= nodes %> )">
-			Course selection: <%= nodes %>
-		</div>
-		<button id="bt", style="background-color: orange;">
-			submit
-		 </button>
+<div class="row">
+		<h2>Course Search</h2>
+		<%= link_to "All Courses", course_twitter_path %>
+           <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" class="  search-query form-control" placeholder="Search a course" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
 	</div>
 
+
+<!--		<div class="course_list" id="para" onClick="coords( <= nodes %> )">
+			Course selection: <= nodes %>
+		</div>
+		
+		<button id="bt", style="background-color: orange;">
+			submit
+		 </button> -->
+
+	</div>
+	
+		 		<hr>
 </body>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ&callback=initialize" async defer>
@@ -43,16 +65,3 @@
 
 <%= debug(params) if Rails.env.development? %>
 
-<div class="container">
-  <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
-      <li role="presentation" class="divider"></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
-    </ul>
-  </div>
-</div>

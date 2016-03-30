@@ -11,9 +11,11 @@ Rails.application.routes.draw do
   get 'help' => 'statics#help'
   get 'signup' => 'users#new'
   
+  get 'course_twitter' => 'maps#course_twitter'
   get 'course' => 'maps#course'
   post 'course' => 'maps#update'
   patch 'course' => 'maps#update'
+  
 
   resources :users
   resources :courses
