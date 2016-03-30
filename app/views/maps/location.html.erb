@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <p><%= link_to "Home", root_path, :class => "glyphicon mylogin"%>
+  <%= link_to "Home", root_path, :class => "glyphicon mylogin"%>
   <% if logged_in? %>
   <%= link_to "Profile", current_u, :class => "glyphicon mylogin"%>
 	<% else %>
