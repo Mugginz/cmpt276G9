@@ -16,13 +16,17 @@ class CoursesController < ApplicationController
   	n = params[:name]
   	r = params[:region]
   	package = params[:coords]
-	arr = eval(package)
-	@c = Course.new(name: n, region: r, coordinates: arr)
-	if @c.save
-		flash[:success] = "Course creation successful."
-		redirect_to 'index'
-	else
-		redirect_to '/create'
+  	if (package.nil?)
+		redirect_to '/courses'
+	else  		
+		arr = eval(package)
+		@c = Course.new(name: n, region: r, coordinates: arr)
+		if @c.save
+			flash[:success] = "Course creation successful."
+			redirect_to '/courses'
+		else
+			redirect_to '/create'
+		end
 	end
   end
 
