@@ -1,0 +1,13 @@
+<% provide(:title, 'Course List') %>
+<h1>List of courses</h1>
+
+<ul class="courses">
+  <% @courses.each do |c| %>
+    <li>
+      <!-- fix 'link_to' to load a course instead -->
+      <%= link_to c.name, c %>, 
+      <%= c.region %> :  
+      <%= c.coordinates %>
+    </li>
+  <% end %>
+</ul>
