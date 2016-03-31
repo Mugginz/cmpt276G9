@@ -14,7 +14,10 @@ class MapsController < ApplicationController
 #  end
 
   def course
+<<<<<<< HEAD
 	   @courses = Course.all
+=======
+>>>>>>> 32241b43c02b01c10572fbe56984cc44ef430ab2
   	render :layout => false
   end
 

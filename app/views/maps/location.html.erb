@@ -5,12 +5,25 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <% render 'layouts/shim' %>
+
+
 </head>
 
-<body class="body_map">
-  <%= render 'layouts/header' %>
-  <div id ="map">
+<body>
+  <div class="body_map">
+    <div class="container">
+        <h3>The map</h3>
+        <div id ="map">
+        </div>
+    </div>
   </div>
+
+  <p><%= link_to "Home", root_path, :class => "glyphicon mylogin"%>
+  <% if logged_in? %>
+  <%= link_to "Profile", current_u, :class => "glyphicon mylogin"%>
+	<% else %>
+  <%= link_to "Login", login_path, :class => "glyphicon mylogin"%>
+	<% end %>
 </body>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ&callback=initialize" async defer>

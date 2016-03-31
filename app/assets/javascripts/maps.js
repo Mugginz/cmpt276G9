@@ -33,7 +33,7 @@ $("document").ready(function() {
     alert("data package: " + pack);
     $.ajax({
       type: "PATCH",
-      url: "/course",
+      url: "/map",
       data: {coords: pack},
       success: function(){
         alert("posted");
@@ -46,7 +46,6 @@ $("document").ready(function() {
 
 });
 // --- ---
-*/
 
 
 
@@ -100,10 +99,32 @@ function initialize(){
     zoom: 18
   });
 
+<<<<<<< HEAD
 
   var fixedCoordsArray = [];
 
   coords
+=======
+  //test course1: sfu parking lot by ASB  //passed
+  var fixedCoordsArray = [
+    {lat: 49.277575, lng: -122.912986},
+    {lat: 49.277460, lng: -122.912310},
+    {lat: 49.277365, lng: -122.911674}
+  ];
+
+/*
+//Course 1: Hastings Community Park
+var fixedCoordsArray = [
+  {lat: 49.28113, lng: -123.03621}, //49.281095, -123.036216
+  {lat: 49.28113, lng: -123.03747}, //49.281107, -123.037477
+  {lat: 49.28113, lng: -123.03880}, //49.281112, -123.038783
+  {lat: 49.28063, lng: -123.03880},  //49.280638, -123.038794
+  {lat: 49.28022, lng: -123.03880}, //49.280229, -123.038787
+  {lat: 49.28022, lng: -123.03754}, //49.280225, -123.037540
+  {lat: 49.28022, lng: -123.03623} //49.280225, -123.036234
+];
+*/
+>>>>>>> 32241b43c02b01c10572fbe56984cc44ef430ab2
 
   function coords(c){
   //    alert(c[0][1]);

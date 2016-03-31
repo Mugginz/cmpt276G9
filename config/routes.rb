@@ -4,21 +4,25 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  get 'location' => 'maps#location'
   get 'home' => 'statics#home'
-  #get 'about' => 'statics#about'
+  get 'about'=> 'statics#about'
+  get 'news' => 'statics#news'
   get 'help' => 'statics#help'
   get 'signup' => 'users#new'
+  get 'create' => 'courses#new'
 
-  get 'course' => 'maps#course'
-  post 'course' => 'maps#update'
-  patch 'course' => 'maps#update'
-  get 'selected' => 'maps#selected'
+  get 'map' => 'maps#course'
+  post 'map' => 'maps#update'
+  patch 'map' => 'maps#update'
+
+  post 'create' => 'courses#create'
 
   resources :users
   resources :courses
 
   root 'statics#home'
+
+  get 'location' => 'maps#location'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

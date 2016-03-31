@@ -8,14 +8,19 @@
 	<% render 'layouts/shim' %>
 </head>
 
+<<<<<<< HEAD
 
 <!--<#% nodes = @c.coordinates %>
 -->
+=======
+>>>>>>> 32241b43c02b01c10572fbe56984cc44ef430ab2
 <body class="body_map">
-	<div id="map"></div>
+	<div id="map" class="map"></div>
 
 	<div class="panel">
 		<%= link_to "Home", root_path %>
+		<%= link_to "All courses", courses_path %>
+		<%= link_to "Create course", create_path %>
 		<div class="dropdown">
 			<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
 	  		<div id="myDropdown" class="dropdown-content">
@@ -28,6 +33,7 @@
 				<% end %>
 	  		</div>
 		</div>
+<<<<<<< HEAD
 <!--
 		<div class="course_list" id="para" onClick="coords( <%#= nodes %> )">
 			Course selection: <%#= nodes %>
@@ -79,6 +85,13 @@
 	<button id="bt",  style="background-color: orange;">
 		submit<%= link_to "Maps", location_path %>
 	</button>
+=======
+
+		<div class="course_list"></div>
+
+	</div>
+
+>>>>>>> 32241b43c02b01c10572fbe56984cc44ef430ab2
 </body>
 >>>>>>> Stashed changes
 
