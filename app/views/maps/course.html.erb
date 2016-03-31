@@ -31,20 +31,48 @@
 		  </ul>
 		</div>
 
-<div class="row">
+	<!-- search bar -->
+	<div class="row">
 		<h2>Course Search</h2>
 		<%= link_to "All Courses", course_twitter_path %>
-           <div id="custom-search-input">
-                            <div class="input-group col-md-12">
-                                <input type="text" class="  search-query form-control" placeholder="Search a course" />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button">
-                                        <span class=" glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
+	    <div id="custom-search-input">
+	        <div class="input-group col-md-4">
+	    	    <input type="text" class="  search-query form-control" placeholder="Search a course" />
+	            <span class="input-group-btn">
+	            	<button class="btn btn-danger" type="button"> <span class=" glyphicon glyphicon-search"></span></button>
+	            </span>
+	        </div>
+	    </div>
 	</div>
+
+	<div class="row">
+		<div class="col-sm-4">
+            <div class="input-group" id="adv-search">
+                <input type="text" class="form-control" placeholder="Search a course" />
+                <div class="input-group-btn">
+                    <div class="btn-group" role="group">
+                        <select class="form-control">
+                            <option value="0">Course 1 </option>
+                            <option value="1">Course 2 </option>
+                            <option value="2">Course 3 </option>
+                          </select>
+                    </div>
+                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!--		<div class="course_list" id="para" onClick="coords( <= nodes %> )">
