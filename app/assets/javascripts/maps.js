@@ -48,7 +48,50 @@ $("document").ready(function() {
 // --- ---
 */
 
+
+
 // --- G-Maps API functions
+var ctmp = [];
+
+function coords(c){
+  if(c[0][0] == 4 ){
+    c[0] = [20,30];
+  }else{
+    c[0] = [2,4];
+  };
+  document.getElementById("para").innerHTML = JSON.stringify(c);
+
+  ctmp = c;
+  return c;
+};
+
+$("document").ready(function() {
+
+  $("#para").click(function() {
+    $("#para").css("background-color", "cyan");
+    var e = $('<p>Appended text </p>');
+    $("#para").append(e);
+    e.attr("id", "p2");
+  });
+/*
+  $("#bt").click(function(){
+    var pack = JSON.stringify(ctmp);
+    alert("data package: " + pack);
+    $.ajax({
+      type: "PATCH",
+      url: "/course",
+      data: {coords: pack},
+      success: function(){
+        alert("posted");
+      },
+      error: function(){
+        alert("fail");
+      }
+    });
+  });
+*/
+});
+
 function initialize(){
 
   //setting up initial map of Vancouver
@@ -59,6 +102,8 @@ function initialize(){
 
 
   var fixedCoordsArray = [];
+
+  coords
 
   function coords(c){
   //    alert(c[0][1]);

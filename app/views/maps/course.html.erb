@@ -9,7 +9,8 @@
 </head>
 
 
-<#% nodes = @c.coordinates %>
+<!--<#% nodes = @c.coordinates %>
+-->
 <body class="body_map">
 	<div id="map"></div>
 
@@ -63,9 +64,14 @@
 -->
 
 	<ul>
-	  <% @courses.each do |c| %>
+	  <% @courses.each do |course| %>
 	    <li>
-	      <%= link_to c.name, selected_path(course_param: c.name) %>
+<!--	      <#%= link_to course.name, selected_path(course_param: course.name) %>
+-->
+				<% nodes = course.coordinates %>
+				<p id="para" onClick="coords( <%= nodes %> )", style="background-color: pink; width: 80%; margin: auto;">
+					<%= nodes %>
+				</p>
 	    </li>
 	  <% end %>
 	</ul>

@@ -23,7 +23,7 @@ class MapsController < ApplicationController
     c_param = params[:course_param]
     @c = Course.find_by_name(c_param)
 
-    render 'course'
+    render 'location'
   end
 
 
