@@ -1,38 +1,31 @@
 class MapsController < ApplicationController
 
+  before_filter :init_share_param
   skip_before_action :verify_authenticity_token, only: [:update]
 
   def location
     render :layout => false
   end
 
-
-
-#  def course
-#	@c = Course.find(1)
-#  	render :layout => false
-#  end
-
   def course
-<<<<<<< HEAD
-	   @courses = Course.all
-=======
->>>>>>> 32241b43c02b01c10572fbe56984cc44ef430ab2
+  #   @c = Course.find(1)
+    @c = Course.find(params[:shared])
+
   	render :layout => false
   end
 
-  #course selected by user
-  def selected
-    c_param = params[:course_param]
-    @c = Course.find_by_name(c_param)
-
-    render 'location'
+  def init_share_param
+   params[:shared] ||= 1
   end
-
 
   def update
   	@c = Course.find(1)
-
+#    if @c.update_attributes(c_params)
+#    if @c.update(coordinates: '{{4,4}}')
+#      flash[:success] = "Profile updated."
+#    else
+#      render 'home'
+#    end
 	package = params[:coords]
 	arr = eval(package)
 # Comparison used for debugging.
@@ -43,13 +36,22 @@ class MapsController < ApplicationController
 		render 'course'
 	end
 
-  if @c.update_attributes(coordinates: arr)
-    flash[:success] = "Profile updated."
-  else
-    render 'home'
-  end
+      if @c.update_attributes(coordinates: arr)
+        flash[:success] = "Profile updated."
+      else
+        render 'home'
+      end
 
   end
+
+
+  private
+    def c_params
+#      params.require(:c).permit(:coordinates)
+#      params.permit(:coordinates)
+      params.require(:c).permit(:name, :region, :coordinates)
+
+    end
 
 
 end

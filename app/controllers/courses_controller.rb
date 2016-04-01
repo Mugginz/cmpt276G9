@@ -6,7 +6,16 @@ class CoursesController < ApplicationController
     @courses = Course.all
     render :layout => false
   end
-  
+
+  def show
+    @c = Course.find(params[:id])
+#    redirect_to '/courses'
+#    render template: "maps/course"
+#    render "maps/course"
+    params[:shared] ||= @c.id
+    render template: "maps/course"
+  end
+
   def new
   	@c = Course.new
   	render :layout => false
@@ -18,7 +27,7 @@ class CoursesController < ApplicationController
   	package = params[:coords]
   	if (package.nil?)
 		redirect_to '/courses'
-	else  		
+	else
 		arr = eval(package)
 		@c = Course.new(name: n, region: r, coordinates: arr)
 		if @c.save
