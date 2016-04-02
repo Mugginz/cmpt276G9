@@ -99,9 +99,10 @@ function initialize(){
 
   var marker = new google.maps.Marker({map: map});  //create new marker object; this marker will move to the user's most recent coords
 
+  var repeater;
   repeatUpdatePos();
 
-//var j = 0;  //for testing checkpoint reach
+var j = 0;  //for testing checkpoint reach
 
     //overall: 1)gets user's position, 2)display it, 3)draws polyline, 4)repeat
     function repeatUpdatePos(){
@@ -127,7 +128,7 @@ function initialize(){
           lng: position.coords.longitude
         };
 
-//pos = fixedCoordsArray[j]; //for testing checkpoint reached
+pos = coordsArray[j]; //for testing checkpoint reached
 
         userCoordsArray.push(pos);  //push coords into array
         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png')
@@ -148,7 +149,7 @@ function initialize(){
 
         //checks if a checkpoint is reached
         reachCheckpoint(pos);
-//j = j+1;   //for testing checkpoint reach
+j = j+1;   //for testing checkpoint reach
       }
 
         //loops current function every interval (in ms); i.e. every cycle: get user position, store it into array, redraw polyline with new coords
@@ -190,6 +191,8 @@ function initialize(){
         //#FLAG THIS CHECKPOINT DATABASE#//
 
         if(checked == coordsArray.length ){  //if user has reached all checkpoints
+
+          clearTimer(); //stops timer
 
           infoWindowEnd.close(map, markersArray[markersArray.length -1]);  //close infowindow displaying "end"
 
