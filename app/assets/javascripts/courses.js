@@ -12,12 +12,15 @@ function createInit(){
 	$("#cc").click(function(){
 		var arr = [];
 		var point = [];
-		for(var i = 0; i < coords.length; i++){
-			point[0] = coords[i]["lat"];
-			point[1] = coords[i]["lng"];
-			arr[i] = point;
+		var pack = "[";
+		
+		var n = coords.length;
+		for(var i = 0; i < (n-1); i++){
+			arr[i] = [coords[i]["lat"], coords[i]["lng"]];
+			pack = pack + "[" + arr[i] + "], ";
 		};
-		var pack = JSON.stringify(arr);
+			pack = pack + "[" + coords[n-1]["lat"] +","+coords[n-1]["lng"] + "]";
+			pack = pack + "]";
 		var n = $("#cn").val();
 		var r = $("#cr").val();
 
@@ -34,7 +37,6 @@ function createInit(){
 			error: function(){
 				alert("fail");
 			}
-
 		});
 	});
 
