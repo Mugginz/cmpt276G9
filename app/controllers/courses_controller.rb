@@ -9,11 +9,7 @@ class CoursesController < ApplicationController
 
   def show
     @c = Course.find(params[:id])
-#    render template: "maps/course"
-#    render "maps/course"
     redirect_to controller: 'maps', action: 'course', id: @c.id
-    #params[:shared] ||= @c.id
-#    render template: "maps/course"
   end
 
   def new
@@ -26,17 +22,21 @@ class CoursesController < ApplicationController
   	r = params[:region]
   	package = params[:coords]
   	if (package.nil?)
-		redirect_to '/courses'
-	else
-		arr = eval(package)
-		@c = Course.new(name: n, region: r, coordinates: arr)
-		if @c.save
-			flash[:success] = "Course creation successful."
-			redirect_to '/courses'
-		else
-			redirect_to '/create'
-		end
-	end
+		  redirect_to '/create'
+	  else
+		  arr = eval(package)
+		  @c = Course.new(name: n, region: r, coordinates: arr)
+      if (Course.find_by_name(n) == n )
+        redirect_to '/create'
+      else
+        if @c.save
+			    flash[:success] = "Course creation successful."
+			    redirect_to '/courses'
+		    else
+		      redirect_to '/create'
+        end
+		  end
+	  end
   end
 
   def destroy
@@ -48,11 +48,5 @@ class CoursesController < ApplicationController
       redirect_to(root_url)
     end
   end
-
-  private
-
-  	def c_params
-  		params.require(:course).permit(:name, :region, :coordinates)
-  	end
 
 end

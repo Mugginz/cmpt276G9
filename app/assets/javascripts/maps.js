@@ -1,76 +1,6 @@
 // # Place all the behaviors and hooks related to the matching controller here.
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
-//
-
-/*
-// --- AJAX Prototying
-var coordsArray = [[49.28113,-123.03621],[49.28113,-123.03747],[49.28113,-123.03880],[49.28063,-123.03880],[49.28022,-123.03880],[49.28022,-123.03754],[49.28022,-123.03623]];
-
-// --- G-Maps API functions
-var ctmp = [];
-
-function coords(c){
-  if(c[0][0] == 4 ){
-    c[0] = [20,30];
-  }else{
-    c[0] = [2,4];
-  };
-  document.getElementById("para").innerHTML = JSON.stringify(c);
-
-  ctmp = c;
-  return c;
-};
-
-$("document").ready(function() {
-
-  $("#para").click(function() {
-    $("#para").css("background-color", "cyan");
-    var e = $('<p>Appended text </p>');
-    $("#para").append(e);
-    e.attr("id", "p2");
-  });
-/*
-  $("#bt").click(function(){
-    var pack = JSON.stringify(ctmp);
-    alert("data package: " + pack);
-    $.ajax({
-      type: "PATCH",
-      url: "/course",
-      data: {coords: pack},
-      success: function(){
-        alert("posted");
-      },
-      error: function(){
-        alert("fail");
-      }
-    });
-  });
-*/
-//});
-/*
-$("document").ready(function() {
-
-  $("#link <%=").click(function() {
-//    var e = $('<p>Appended text </p>');
-//    $("#para").append(e);
-//    e.attr("id", "p2");
-    alert("ajax kicking in");
-    $.ajax({
-      type: "GET",
-      url: "/course",
-    //      data: {coords: pack},
-      success: function(){
-        alert(data.name);
-      },
-      error: function(){
-        alert("fail");
-      }
-    });
-  });
-
-});
-*/
 
 /*
 var keepRunning = 0; //flag for ending js when user leaves map view. 0 = run, 1 = exit.
@@ -79,17 +9,21 @@ function runMode(){ // views that are accessible from map view will call this fu
   keepRunning = 1;
 };
 */
+
 var coordsArray = [];
+var map;
 
 function coords(c){
 
-  for (i=0; i< c.length; i++){
-//    coordsArray[i] = "{lat:"+ c[i][0]+","+ "lng:" +c[i][1]+"}";
-    coordsArray[i] = {lat: c[i][0], lng: c[i][1]};
-  }
-alert(JSON.stringify(coordsArray));//test
+//  alert("coords");
+  if (c != null){ //deals with clicking the 'popular maps' link which does not pass coords
 
-  var map;
+    for (i=0; i< c.length; i++){
+//    coordsArray[i] = "{lat:"+ c[i][0]+","+ "lng:" +c[i][1]+"}";
+      coordsArray[i] = {lat: c[i][0] ,lng: c[i][1]};
+    }
+  }
+//alert(coordsArray);//test
 
   initialize();
 };
@@ -98,7 +32,7 @@ function initialize(){
   var zoomzoom = 17; //amount of zoom-in on map to display course
 //alert("init");
   //upon viewing maps#course first time, there are no coords in coordsArray, so just render map of Vancouver
-  if(coordsArray.length < 1){
+  if(coordsArray.length < 1 || coordsArray == null){
     zoomzoom = 12;
   }
 
@@ -238,6 +172,7 @@ function initialize(){
 
         if(checked == 1){
               infoWindowStart.close(map, markersArray[0]); //get rid of start infowindow
+
         }
 
         //draws a new polyline that is blue between all reached checkpoints
@@ -268,6 +203,7 @@ function initialize(){
 
         }
       }
+      
     }
   };
 // --- ---
