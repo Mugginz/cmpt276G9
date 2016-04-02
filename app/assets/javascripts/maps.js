@@ -172,6 +172,7 @@ function initialize(){
 
         if(checked == 1){
               infoWindowStart.close(map, markersArray[0]); //get rid of start infowindow
+
         }
 
         //draws a new polyline that is blue between all reached checkpoints
@@ -202,6 +203,7 @@ function initialize(){
 
         }
       }
+      
     }
   };
 // --- ---
