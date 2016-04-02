@@ -9,20 +9,6 @@
 	<% render 'layouts/shim' %>
 </head>
 
-<<<<<<< HEAD
-<body class="body_map">
-<div id="map"></div>
-		<hr>
-	<div class="container">
-
-		<div class="btn-group dropup">
-  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-		    Menu<span class="caret"></span>
-		  	</button>
-		  <ul class="dropdown-menu dropdown-menu-right" style="right: 0; left: auto;">
-		    		<li><%= link_to "Home", root_path %></li>
-			  	<% if logged_in? %>
-=======
 <body class="body_map" >
 	<div id="map" class="map" ></div>
 
@@ -32,18 +18,23 @@
 		<%= link_to "Create course", create_path %>
 		<div class="dropdown">
 			<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
-	  		<div id="myDropdown" class="dropdown-content">
 	  			<% if logged_in? %>
->>>>>>> c39c591efc07b9c57b29a7ad63369a811d6681b6
+					<li><%= link_to "Home", root_path %></li>
+			  	<% if logged_in? %>
 					<li><%= link_to "Profile", current_u %></li>
 					<li><%= link_to "Settings", edit_user_path(current_u) %></li>
 					<li><%= link_to "Log out", logout_path, method: :delete %></li>
 				<% else %>
 					<li><%= link_to "Log in", login_path %></li>
 				<% end %>
-		  </ul>
 		</div>
-<<<<<<< HEAD
+		<div id="timerdiv">
+			<div id="hours_ele">0</div>
+			<div id="minutes_ele">0</div>
+			<div id="seconds_ele">0</div>
+		</div>
+		<button onclick="startTimer()">Start</button>
+		<button onclick="clearTimer()">Clear</button>
 
 	<!-- search bar -->
 	<div class="row">
@@ -99,20 +90,9 @@
 
 		<div class="course_list"></div>
 
-=======
-		<div id="timerdiv">
-			<div id="hours_ele">0</div>
-			<div id="minutes_ele">0</div>
-			<div id="seconds_ele">0</div>
-		</div>
-		<button onclick="startTimer()">Start</button>
-		<button onclick="clearTimer()">Clear</button>
->>>>>>> c39c591efc07b9c57b29a7ad63369a811d6681b6
 	</div>
 
-	</div>
-	
-		 		<hr>
+<hr>
 </body>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ" onload="coords(<%= @coords %>)" async defer>
