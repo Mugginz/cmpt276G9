@@ -7,21 +7,20 @@ function createInit(){
 
 	var coords = [];
 
-//	$("document").ready(function() { 
-		$("#cc").click(function(){
-			var arr = [];
-			var point = [];
-			for(var i = 0; i < coords.length; i++){
-				point[0] = coords[i]["lat"];
-				point[1] = coords[i]["lng"];
-				arr[i] = point;
-			};
-			var pack = JSON.stringify(arr);
-			var n = $("#cn").val();
-			var r = $("#cr").val();
+	$("#cc").click(function(){
+		var arr = [];
+		var point = [];
+		for(var i = 0; i < coords.length; i++){
+			point[0] = coords[i]["lat"];
+			point[1] = coords[i]["lng"];
+			arr[i] = point;
+		};
+		var pack = JSON.stringify(arr);
+		var n = $("#cn").val();
+		var r = $("#cr").val();
 
-			//for debugging only.
-			alert("data package: " + n +", " + r + ", " + pack);
+		//for debugging only.
+		alert("data package: " + n +", " + r + ", " + pack);
 
 		$.ajax({
 			type: "POST",
@@ -34,8 +33,7 @@ function createInit(){
 				alert("fail");
 			}
 		}); 
-		});
-//	});
+	});
 
   //setting up initial map of Vancouver
 	var map = new google.maps.Map(document.getElementById('mapcreate'), {
