@@ -1,6 +1,6 @@
 class MapsController < ApplicationController
 
-  before_filter :init_share_param
+#  before_filter :init_share_param
   skip_before_action :verify_authenticity_token, only: [:update]
 
   def location
@@ -8,14 +8,20 @@ class MapsController < ApplicationController
   end
 
   def course
-    # @c = Course.find(5)
-    @c = Course.find(params[:id])
+#     @c = Course.find(5)
+     if params[:id]
+       @c = Course.find(params[:id])
+       @coords = @c.coordinates
+     else
+#       @c = Course.find(1)
+      @coords = nil
+     end
   	render :layout => false
   end
 
-  def init_share_param
-   params[:shared] ||= 1
-  end
+#  def init_share_param
+#   params[:shared] ||= 1
+#  end
 
   def update
   	@c = Course.find(1)

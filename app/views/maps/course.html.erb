@@ -10,7 +10,7 @@
 
 </head>
 
-<body class="body_map" onload="coords(<%= @c.coordinates %>)">
+<body class="body_map" onload="coords(<%= @coords %>)">
 	<div id="map" class="map"></div>
 
 	<div class="panel">
@@ -29,6 +29,13 @@
 				<% end %>
 	  		</div>
 		</div>
+		<div id="timerdiv">
+			<div id="hours_ele">0</div>
+			<div id="minutes_ele">0</div>
+			<div id="seconds_ele">0</div>
+		</div>
+		<button onclick="startTimer()">Start</button>
+		<button onclick="clearTimer()">Clear</button>
 	</div>
 
 </body>
