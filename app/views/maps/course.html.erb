@@ -10,7 +10,6 @@
 </head>
 
 <body class="body_map">
-<<<<<<< HEAD
 <div id="map"></div>
 		<hr>
 	<div class="container">
@@ -22,18 +21,6 @@
 		  <ul class="dropdown-menu dropdown-menu-right" style="right: 0; left: auto;">
 		    		<li><%= link_to "Home", root_path %></li>
 			  	<% if logged_in? %>
-=======
-	<div id="map" class="map"></div>
-
-	<div class="panel">
-		<%= link_to "Home", root_path %>
-		<%= link_to "All courses", courses_path %>
-		<%= link_to "Create course", create_path %>
-		<div class="dropdown">
-			<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
-	  		<div id="myDropdown" class="dropdown-content">
-	  			<% if logged_in? %>
->>>>>>> 32241b43c02b01c10572fbe56984cc44ef430ab2
 					<li><%= link_to "Profile", current_u %></li>
 					<li><%= link_to "Settings", edit_user_path(current_u) %></li>
 					<li><%= link_to "Log out", logout_path, method: :delete %></li>
@@ -43,7 +30,6 @@
 		  </ul>
 		</div>
 
-<<<<<<< HEAD
 	<!-- search bar -->
 	<div class="row">
 		<h2>Course Search</h2>
@@ -95,11 +81,10 @@
 		<button id="bt", style="background-color: orange;">
 			submit
 		 </button> -->
-=======
+
 		<div class="course_list"></div>
 
 	</div>
->>>>>>> 32241b43c02b01c10572fbe56984cc44ef430ab2
 
 	</div>
 	

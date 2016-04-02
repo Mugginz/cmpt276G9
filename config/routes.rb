@@ -11,19 +11,16 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
   get 'create' => 'courses#new'
   
-<<<<<<< HEAD
-  get 'course_twitter' => 'maps#course_twitter'
   get 'course' => 'maps#course'
   post 'course' => 'maps#update'
   patch 'course' => 'maps#update'
-  
-=======
+  get 'course_twitter' => 'maps#course_twitter'
+
   get 'map' => 'maps#course'
   post 'map' => 'maps#update'
   patch 'map' => 'maps#update'
 
   post 'create' => 'courses#create'
->>>>>>> 32241b43c02b01c10572fbe56984cc44ef430ab2
 
   resources :users
   resources :courses
