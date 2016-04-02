@@ -11,23 +11,24 @@
 
 <body class="body_map" >
 	<div id="map" class="map" ></div>
+	
+	<div class="container">
+			<div class="btn-group" role="group" >
+			  <button type="button" class="glyphicon glyphicon-home"> <%= link_to "Home", root_path %> </button>
+			  <button type="button" class="glyphicon glyphicon-th-list"> <%= link_to "All courses", courses_path %> </button>
+			  
+			  <% if logged_in? %>
+			   		<button type="button" class="glyphicon glyphicon-user"> <%= link_to "Profile", current_u %> </button>
+			  		<button type="button" class="glyphicon glyphicon-cog"> <%= link_to "Settings", edit_user_path(current_u) %> </button>
+			    	<button type="button" class="glyphicon glyphicon-pencil"> <%= link_to "Create course", create_path %> </button>			  	
+			    	<button type="button" class="glyphicon glyphicon-chevron-down"> <%= link_to "Log out", logout_path, method: :delete %> </button>
+			    <% else %>
+			  		  <button type="button" class="glyphicon glyphicon-arrow-up"> <%= link_to "Log in", login_path %>  </button>
+			    			    <% end %>
+			</div>
 
-	<div class="panel">
-		<%= link_to "Home", root_path %>
-		<%= link_to "All courses", courses_path %>
-		<%= link_to "Create course", create_path %>
-		<div class="dropdown">
-			<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
-	  			<% if logged_in? %>
-					<li><%= link_to "Home", root_path %></li>
-			  	<% if logged_in? %>
-					<li><%= link_to "Profile", current_u %></li>
-					<li><%= link_to "Settings", edit_user_path(current_u) %></li>
-					<li><%= link_to "Log out", logout_path, method: :delete %></li>
-				<% else %>
-					<li><%= link_to "Log in", login_path %></li>
-				<% end %>
-		</div>
+
+
 		<div id="timerdiv">
 			<div id="hours_ele">0</div>
 			<div id="minutes_ele">0</div>
