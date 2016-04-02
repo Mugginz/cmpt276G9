@@ -85,9 +85,9 @@ function coords(c){
 
   for (i=0; i< c.length; i++){
 //    coordsArray[i] = "{lat:"+ c[i][0]+","+ "lng:" +c[i][1]+"}";
-    coordsArray[i] = {lat: c[i][0] ,lng: c[i][1]};
+    coordsArray[i] = {lat: c[i][0], lng: c[i][1]};
   }
-alert(coordsArray);//test
+alert(JSON.stringify(coordsArray));//test
 
   var map;
 

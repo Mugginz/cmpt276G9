@@ -39,6 +39,16 @@ class CoursesController < ApplicationController
 	end
   end
 
+  def destroy
+    Course.find(params[:id]).destroy
+    flash[:success] = "Course deletion successful."
+    if current_u.admin?
+      redirect_to(courses_url)
+    else
+      redirect_to(root_url)
+    end
+  end
+
   private
 
   	def c_params
