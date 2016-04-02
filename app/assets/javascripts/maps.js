@@ -40,7 +40,7 @@ function initialize(){
     zoom: zoomzoom
   });
 
-  if(coordsArray.length < 1){
+  if(coordsArray.length < 1 || coordsArray == null){
     return;
   }
 /*  keepRunning = 0;

@@ -6,17 +6,29 @@
 function createInit(){
 
 	var coords = [];
+//	var possi = [];//
+//	var fauxarr = [];//
 
-//	$("document").ready(function() { 
+//	$("document").ready(function() {
 		$("#cc").click(function(){
 			var arr = [];
 			var point = [];
 			for(var i = 0; i < coords.length; i++){
 				point[0] = coords[i]["lat"];
 				point[1] = coords[i]["lng"];
+
+	/*			point[0] = coords.lat;
+				point[1] = coords.lng;
+	*/
 				arr[i] = point;
+//				alert("jquery:"+ point[0]);
 			};
-			var pack = JSON.stringify(arr);
+//						alert("posted array: " +arr);//
+//						alert("actual coords: "+possi);//
+			var pack = [];
+			pack = JSON.stringify(arr);
+			alert(pack);
+
 			var n = $("#cn").val();
 			var r = $("#cr").val();
 
@@ -33,7 +45,7 @@ function createInit(){
 			error: function(){
 				alert("fail");
 			}
-		}); 
+		});
 		});
 //	});
 
@@ -54,20 +66,25 @@ function createInit(){
 
 	google.maps.event.addListener(map, "click", function (event) {
     	var latitude = event.latLng.lat();
-		var longitude = event.latLng.lng();
+			var longitude = event.latLng.lng();
 
     	var marker = new google.maps.Marker({map: map});
 
+//    function showPosition(position){
 	    pos = {
 	      lat: latitude,
 	      lng: longitude
 	    };
+
+//			posi = "{ lat: "+ latitude+ "," +"lng: "+ longitude+"}"; //testing to show whats stored in coords
 	    coords.push(pos);
+//			possi.push(posi);//
+//			alert("actual coords: "+possi); //
 
 	    marker.setPosition(pos);
 
 	    var runningPath = new google.maps.Polyline({
-    		path: coordsArray,
+    		path: coords,
     		geodesic: true,
     		strokeColor: '#FF0000',
     		strokeOpacity: 1.0,
@@ -75,6 +92,7 @@ function createInit(){
     	});
 		runningPath.setMap(map);
 	});
+
 
 	function showPosition(position){
     	pos = {
