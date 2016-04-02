@@ -7,7 +7,7 @@
     cursor: pointer;
 	border-radius: 3px;
 	margin-right: 150px;
-	
+
 }
 .dropbtn:hover {background-color: green;}
 .dropbtn:active {
@@ -36,3 +36,25 @@
 }
 .dropdown a:hover {background-color: #f1f1f1}
 .show {display:block;}
+
+
+#timerdiv{
+    display:flex;
+    flex-direction:row;
+//    justify-content: space-between;
+}
+
+#hours_ele{
+    display:flex;
+    flex-direction:column;
+}
+
+#minutes_ele{
+    display:flex;
+    flex-direction:column;
+}
+
+#seconds_ele{
+    display:flex;
+    flex-direction:column;
+}
