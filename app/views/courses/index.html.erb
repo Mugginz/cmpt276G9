@@ -5,8 +5,13 @@
   <% @courses.each do |c| %>
     <li>
       <!-- fix 'link_to' to load a course instead -->
-      <%= link_to c.name, c %>, 
-      <%= c.region %> :  
+     <%= link_to c.name, c %>,
+      <%#= link_to c.name, map_path, id: "linkcourse" %>,
+      <%#= link_to c.name, map_path(:course_name => c.id) %>,
+      <%#= link_to c.name, map_path(:cid => c.id) %>
+      <%#= link_to c.name, map_path(:c_id => c.id) %>
+      <%#= course.id %>
+      <%= c.region %> :
       <%= c.coordinates %>
     </li>
   <% end %>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'help' => 'statics#help'
   get 'signup' => 'users#new'
   get 'create' => 'courses#new'
-  
+
   get 'map' => 'maps#course'
   post 'map' => 'maps#update'
   patch 'map' => 'maps#update'
