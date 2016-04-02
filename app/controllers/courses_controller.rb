@@ -9,11 +9,11 @@ class CoursesController < ApplicationController
 
   def show
     @c = Course.find(params[:id])
-#    redirect_to '/courses'
 #    render template: "maps/course"
 #    render "maps/course"
-    params[:shared] ||= @c.id
-    render template: "maps/course"
+    redirect_to controller: 'maps', action: 'course', id: @c.id
+    #params[:shared] ||= @c.id
+#    render template: "maps/course"
   end
 
   def new

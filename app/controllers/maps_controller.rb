@@ -8,9 +8,8 @@ class MapsController < ApplicationController
   end
 
   def course
-  #   @c = Course.find(1)
-    @c = Course.find(params[:shared])
-
+    # @c = Course.find(5)
+    @c = Course.find(params[:id])
   	render :layout => false
   end
 
