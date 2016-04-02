@@ -9,10 +9,12 @@ function runMode(){ // views that are accessible from map view will call this fu
   keepRunning = 1;
 };
 */
+
 var coordsArray = [];
 var map;
 
 function coords(c){
+
 //  alert("coords");
   if (c != null){ //deals with clicking the 'popular maps' link which does not pass coords
 

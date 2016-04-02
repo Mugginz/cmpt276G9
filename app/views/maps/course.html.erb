@@ -6,12 +6,10 @@
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<% render 'layouts/shim' %>
-
-
 </head>
 
-<body class="body_map" onload="coords(<%= @coords %>)">
-	<div id="map" class="map"></div>
+<body class="body_map" >
+	<div id="map" class="map" ></div>
 
 	<div class="panel">
 		<%= link_to "Home", root_path %>
@@ -30,9 +28,12 @@
 	  		</div>
 		</div>
 		<div id="timerdiv">
-			<div id="hours_ele">0</div>
-			<div id="minutes_ele">0</div>
-			<div id="seconds_ele">0</div>
+			<div id="hours1_ele">0</div>
+			<div id="hours2_ele">0</div>
+			<div id="minutes1_ele">0</div>
+			<div id="minutes2_ele">0</div>
+			<div id="seconds1_ele">0</div>
+			<div id="seconds2_ele">0</div>			
 		</div>
 		<button onclick="startTimer()">Start</button>
 		<button onclick="clearTimer()">Clear</button>
@@ -40,7 +41,8 @@
 
 </body>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ" async defer>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ" onload="coords(<%= @coords %>)" async defer>
 </script>
+
 
 <%= debug(params) if Rails.env.development? %>
