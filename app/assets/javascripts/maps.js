@@ -7,7 +7,7 @@ var keepRunning = 0; //flag for ending js when user leaves map view. 0 = run, 1 
 
 function runMode(){ // views that are accessible from map view will call this function to end js script
   keepRunning = 1;
-  alert("runmode");
+//  alert("runmode");
 };
 
 var coordsArray = [];
