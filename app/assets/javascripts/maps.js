@@ -13,9 +13,9 @@ function runMode(){ // views that are accessible from map view will call this fu
 var coordsArray = [];
 var map;
 
-function coords(c){
 
-//  alert("coords");
+function coords(n, c){
+
   if (c != null){ //deals with clicking the 'popular maps' link which does not pass coords
 
     for (i=0; i< c.length; i++){
@@ -25,10 +25,10 @@ function coords(c){
   }
 //alert(coordsArray);//test
 
-  initialize();
+  initialize(n);
 };
 
-function initialize(){
+function initialize(n){
   var zoomzoom = 17; //amount of zoom-in on map to display course
 //alert("init");
   //upon viewing maps#course first time, there are no coords in coordsArray, so just render map of Vancouver
@@ -101,7 +101,7 @@ function initialize(){
 
   repeatUpdatePos();
 
-//var j = 0;  //for testing checkpoint reach
+var j = 0;  //for testing checkpoint reach
 
     //overall: 1)gets user's position, 2)display it, 3)draws polyline, 4)repeat
     function repeatUpdatePos(){
@@ -127,7 +127,7 @@ function initialize(){
           lng: position.coords.longitude
         };
 
-//pos = fixedCoordsArray[j]; //for testing checkpoint reached
+pos = coordsArray[j]; //for testing checkpoint reached
 
         userCoordsArray.push(pos);  //push coords into array
         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png')
@@ -148,11 +148,11 @@ function initialize(){
 
         //checks if a checkpoint is reached
         reachCheckpoint(pos);
-//j = j+1;   //for testing checkpoint reach
+j = j+1;   //for testing checkpoint reach
       }
 
         //loops current function every interval (in ms); i.e. every cycle: get user position, store it into array, redraw polyline with new coords
-        setTimeout(repeatUpdatePos,2000);
+        setTimeout(repeatUpdatePos,5000);
 
       function errorMessage(error){
         alert("Error: Location info is unavailable.");
@@ -189,6 +189,18 @@ function initialize(){
 //        checkPath.setMap(map);  //set polyline on map
 
         //#FLAG THIS CHECKPOINT DATABASE#//
+        $.ajax({
+          type: "POST",
+          url: "/progresses",
+          data: {name: n, count: checked},
+          success: function(){
+            alert("posted");
+          },
+          //error: function(){
+          //  alert("fail");
+          //}
+        });
+        console.log("checed: " + checked)
 
         if(checked == coordsArray.length ){  //if user has reached all checkpoints
 

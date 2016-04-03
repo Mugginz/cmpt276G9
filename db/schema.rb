@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401081231) do
+ActiveRecord::Schema.define(version: 20160403022435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 20160401081231) do
   create_table "progresses", force: :cascade do |t|
     t.text     "name"
     t.integer  "user_id"
-    t.boolean  "checkpoints",              array: true
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "progresses", ["user_id"], name: "index_progresses_on_user_id", using: :btree

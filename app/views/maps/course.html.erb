@@ -5,6 +5,7 @@
 
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 	<% render 'layouts/shim' %>
 </head>
 
@@ -38,7 +39,7 @@
 
 </body>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ" onload="coords(<%= @coords %>)" async defer>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ" onload="coords('<%= @na %>',<%= @coords %>)" async defer>
 </script>
 
 
