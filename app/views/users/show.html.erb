@@ -6,7 +6,8 @@
 			<%= avatar_for @u %>
 		</h2>
 	</aside>
-	
+
+
 	<div class="user_profile">
 		<p> Name: <%=@u.name %> </p>
 		<p>Routes Completed:</p>
@@ -38,3 +39,4 @@
 	</div>
 </div>
 
+						<li><%= link_to "Settings", edit_user_path(current_u) %></li>
