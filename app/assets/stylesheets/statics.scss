@@ -56,6 +56,8 @@ html, body{
 }
 
 
+
+
 /* --- Home Page Content --- */
 .home_page_content{
 	color:#e6e6e8;
@@ -67,6 +69,16 @@ html, body{
 	color:#e6e6e8; 
 	margin:0 0 0 0;
 	font-family: 'Open Sans', sans-serif;
+}
+
+
+.news_table{
+	text-align:left; 
+	margin-left:5px; 
+	margin-top:5px; 
+	border-spacing:5px; 
+	border-collapse: collapse; 
+	border-color:#e6e6e8;
 }
 
 
