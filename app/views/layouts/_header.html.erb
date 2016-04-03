@@ -1,35 +1,38 @@
+<meta name="viewport" content="initial-scale=1">
 <header class="header">
 	<nav class="navbar navbar-inverse menu_stuff">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-			<%= link_to image_tag("/assets/logo.png",style:'max-width:100%;max-height:120%;',alt:"Promptitude Logo"), root_path %>
+			<%= link_to image_tag("/assets/logo.png", :class => "logo", alt:"Promptitude Logo"), root_path %>
 	    </div>
-	    <ul class="nav navbar-nav">
-	      <li><%= link_to "About", about_path %></li>
-	      <li><%= link_to "News", news_path %></li>
-	      <li><%= link_to "Maps", location_path %></li> 
-	      <li><%= link_to "Popular Courses", course_path %></li> 
-	    </ul>
-	    <ul class="nav navbar-nav navbar-right">
-	      		<% if logged_in? %>
-					<%= link_to "Profile", current_u, :class => "btn"%>
-					<%= link_to "Settings", edit_user_path(current_u), :class => "btn" %>
-					<%= link_to "Log out", logout_path, method: :delete, :class => "btn"%>
-				<% else %>
-					<!-- inline login -->
+	    <div class="navbar-mid">
+	    	<ul class="nav navbar-nav">
+	      		<li><%= link_to "About", about_path %></li>
+	      		<li><%= link_to "News", news_path %></li>
+	      		<li><%= link_to "Maps", location_path %></li> 
+	      		<li><%= link_to "Popular Courses", course_path %></li> 
+	    	</ul>
+	    </div>
+	    <ul class="navbar-login">
+	     	<% if logged_in? %>
+				<%= link_to "Profile", current_u, :class => "btn"%>
+				<%= link_to "Settings", edit_user_path(current_u), :class => "btn" %>
+				<%= link_to "Log out", logout_path, method: :delete, :class => "btn"%>
+			<% else %>
+				<!-- inline login -->
 					<%= form_for(:session, url: login_path, html: { class: "navbar-form navbar-right form-inline" }) do |f| %> 
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
 						<%= f.text_field :email, :placeholder => "Email", :class => "form-control" %> 
 					</div>
 					<div class="input-group">
-                    	<span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>
+                   		<span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>
 						<%= f.password_field :password, :placeholder => "Password", :class => "form-control" %> 
 					</div>
 					<%= f.check_box :remember_me, :class => "checkbox" %><%= f.label :remember_me, :class => "checkbox" %> 
 					<%= f.submit 'Login', :class => "glyphicon mylogin" %> 
 					<% end %>
-				<% end %>
+			<% end %>
 	    </ul>
 	  </div>
 	</nav>
