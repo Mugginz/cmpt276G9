@@ -72,11 +72,8 @@ html, body{
 }
 
 
-.news_table{
-	text-align:left; 
-	margin-left:5px; 
-	margin-top:5px; 
-	border-spacing:5px; 
+.news_table tr td{
+	padding: 15px;
 	border-collapse: collapse; 
 	border-color:#e6e6e8;
 }
