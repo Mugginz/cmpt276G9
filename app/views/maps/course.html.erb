@@ -5,12 +5,13 @@
 
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-
+	<%= csrf_meta_tags %>
 	<% render 'layouts/shim' %>
 </head>
 
 <body class="body_map" >
 
+	<div id="map" class="map" ></div>
 	
 	<div class="container">
 			<div class="btn-group" role="group" >
@@ -27,15 +28,13 @@
 			    <% end %>
 			</div>
 
-
-
 		<div id="timerdiv">
 			<div id="hours1_ele">0</div>
 			<div id="hours2_ele">0</div>
 			<div id="minutes1_ele">0</div>
 			<div id="minutes2_ele">0</div>
 			<div id="seconds1_ele">0</div>
-			<div id="seconds2_ele">0</div>			
+			<div id="seconds2_ele">0</div>
 		</div>
 		<button onclick="startTimer()">Start</button>
 		<button onclick="clearTimer()">Clear</button>
@@ -51,11 +50,10 @@
 		<div class="course_list"></div>
 
 	</div>
-	<div id="map" class="map" ></div>
 <hr>
 </body>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ" onload="coords(<%= @coords %>)" async defer>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ" onload="coords('<%= @na %>',<%= @coords %>)" async defer>
 </script>
 
 

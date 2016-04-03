@@ -3,9 +3,9 @@
 one:
   name: MyText
   user_id: 
-  checkpoints: false
+  status: 1
 
 two:
   name: MyText
   user_id: 
-  checkpoints: false
+  status: 1

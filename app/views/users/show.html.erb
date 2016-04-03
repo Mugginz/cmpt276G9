@@ -16,24 +16,13 @@
 				<th>Time cost</th>
 				<th>[Link to course page]</th>
 			</tr>
+			<% @p.each do |p| %>
 			<tr>
-				<td>	   </td>
-				<td>	      </td>
-				<td>					   </td>
+				<td><%= p.name %></td>
+				<td>000</td>
+				<td><%= link_to @courses.find_by_name(p.name).name, @courses.find_by_name(p.name) %></td>
 			</tr>
-		</table>
-		<p>Routes in progress:</p>
-		<table class="courses_in_progress">
-			<tr>
-				<th>Course</th>
-				<th>Progress</th>
-				<th>[Link to course page]</th>
-			</tr>
-			<tr>
-				<td>	    </td>
-				<td>		  </td>
-				<td>					  </td>
-			</tr>
+			<% end %>
 		</table>
 	</div>
 </div>
