@@ -218,13 +218,18 @@ html, body{
 		font-size: 1.5em;
 		text-align:center; 
 		color:#e6e6e8; 
-		margin:0 0 0 0;
+		margin: 0 0 0 0;
 		padding-top:20px;
 		font-family: 'Open Sans', sans-serif;
 	}
 	
 }
-
+.about_page_content{
+	margin-top:-20px;
+	color:#e6e6e8;
+	text-align:center;
+	font-family: 'Open Sans', sans-serif;
+}
 .news_table tr td{
 	padding: 15px;
 	border-collapse: collapse; 
