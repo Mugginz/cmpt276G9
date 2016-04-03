@@ -230,6 +230,18 @@ html, body{
 	text-align:center;
 	font-family: 'Open Sans', sans-serif;
 }
+.news_page_content{
+	margin-top:-20px;
+	color:#e6e6e8;
+	text-align:center;
+	font-family: 'Open Sans', sans-serif;
+}
+.news_table{
+	width:80%;
+	margin-left:10%;
+	margin-right:10%;
+	overflow: auto;
+}
 .news_table tr td{
 	padding: 15px;
 	border-collapse: collapse; 
@@ -260,7 +272,6 @@ html, body{
 	overflow: hidden;
 	background-color: #06000a;
 	color: #e6e6e8;
-	margin-top:-50px;
 }
 hr{
 	height: 1px;
