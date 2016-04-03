@@ -14,7 +14,6 @@ class MapsController < ApplicationController
     end
   	
   render :layout => false
-#    render :searchItems
   end
 
 end
