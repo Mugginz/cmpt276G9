@@ -1,5 +1,4 @@
-//timer to go with the course view
-
+/*Timer to go with the course view.*/
 
 var timeroff = 0; //if 1, clears timer
 
