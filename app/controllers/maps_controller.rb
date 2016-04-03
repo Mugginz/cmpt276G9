@@ -1,6 +1,7 @@
 class MapsController < ApplicationController
 
   def course
+    @courses = Course.all
     @coords = []
     @na = ""
     if params[:id]
