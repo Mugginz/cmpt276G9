@@ -6,14 +6,17 @@
 function createInit(){
 
 	var coords = [];
-//	var possi = [];//
-//	var fauxarr = [];//
+	var markersArr = [];
+	var lines = []; //stores polylines
+	var j = 0; // length of markerArr
+	var k = 0; // index of lines[]
+	var runningPath; //polyline of markers
 
 	$("#cc").click(function(){
 		var arr = [];
 		var point = [];
 		var pack = "[";
-		
+
 		var n = coords.length;
 		for(var i = 0; i < (n-1); i++){
 			arr[i] = [coords[i]["lat"], coords[i]["lng"]];
@@ -40,14 +43,11 @@ function createInit(){
 		});
 	});
 
-
   //setting up initial map of Vancouver
 	var map = new google.maps.Map(document.getElementById('mapcreate'), {
 		center: {lat: 49.27750, lng: -122.91450},
 		zoom: 17
 	});
-
-	var marker = new google.maps.Marker({map: map});
 
 	if( navigator.geolocation ){
 		navigator.geolocation.getCurrentPosition(showPosition, errorMessage);
@@ -56,36 +56,89 @@ function createInit(){
 		alert("Error: This browser does not support geolocation.");
 	}
 
+	var infoWindowStart, infoWindowEnd;
+
 	google.maps.event.addListener(map, "click", function (event) {
     	var latitude = event.latLng.lat();
 			var longitude = event.latLng.lng();
 
-    	var marker = new google.maps.Marker({map: map});
-
-//    function showPosition(position){
-	    pos = {
+			pos = {
 	      lat: latitude,
 	      lng: longitude
 	    };
 
-//			posi = "{ lat: "+ latitude+ "," +"lng: "+ longitude+"}"; //testing to show whats stored in coords
 	    coords.push(pos);
-//			possi.push(posi);//
-//			alert("actual coords: "+possi); //
 
-	    marker.setPosition(pos);
+			var marker = new google.maps.Marker(
+				{ map: map,
+					unique_id: j,    //able to identify a specific marker to do stuff to
+					position: pos,
+					draggable: true
+				}
+			);
+			j++;
 
-	    var runningPath = new google.maps.Polyline({
-    		path: coords,
-    		geodesic: true,
-    		strokeColor: '#FF0000',
-    		strokeOpacity: 1.0,
-    		strokeWeight: 2
-    	});
-		runningPath.setMap(map);
+			markersArr.push(marker);
+			marker.setPosition(markersArr[markersArr.length - 1].position);
+	//    marker.setPosition(pos);
+
+
+
+
+
+				updatePath();
+
+				//redraw polyline after a marker is dragged in place
+				google.maps.event.addListener(marker, 'dragend', function() {
+
+					var	position = this.getPosition(); //get LatLng of marker
+					var index = markersArr.indexOf(this); //get the index of this marker
+
+					coords[index] = position;	//update new coordinate in array
+
+					updatePath();
+				});
 	});
 
+	function updatePath(){
 
+		runningPath = new google.maps.Polyline({
+		  path: coords,
+		  geodesic: true,
+			strokeColor: '#FF0000',
+			strokeOpacity: 1.0,
+			strokeWeight: 2,
+		});
+
+		if (lines.length > 0){
+			lines[lines.length - 1].setMap(null); //removes previous polyline from map
+		}
+
+		lines.push(runningPath);
+		lines[lines.length -1].setMap(map); //sets the new polyline on map
+	}
+/*
+	function windowsDisplay(){
+		//show infowindow to show where the start marker is
+		if (infoWindowStart == null && markersArr.length > 0){
+					infoWindowStart = new google.maps.InfoWindow({map: map});
+					infoWindowStart.setContent("Start");
+					infoWindowStart.open(map, markersArr[0]); //infowindow to indicate first marker placed
+		}
+		//show infowindow to show where the last marker is
+		if (markersArr.length > 1){
+			if(infoWindowEnd == null){
+				infoWindowEnd = new google.maps.InfoWindow({map: map});
+				infoWindowEnd.setContent("End");
+				infoWindowEnd.open(map, markersArr[markersArr.length - 1]); //infowindow to indicate last marker placed
+	//					infoWindowEnd.setPosition(coords.length - 1);
+				}
+	//						infoWindowEnd.close();
+					infoWindowEnd.setPosition(coords.length -1);
+		}
+	}
+	*/
+///////////////////
 	function showPosition(position){
     	pos = {
     		lat: position.coords.latitude,
