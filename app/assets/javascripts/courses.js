@@ -6,6 +6,8 @@
 function createInit(){
 
 	var coords = [];
+//	var possi = [];//
+//	var fauxarr = [];//
 
 	$("#cc").click(function(){
 		var arr = [];
@@ -35,9 +37,9 @@ function createInit(){
 			error: function(){
 				alert("fail");
 			}
-		}); 
-
+		});
 	});
+
 
   //setting up initial map of Vancouver
 	var map = new google.maps.Map(document.getElementById('mapcreate'), {
@@ -56,20 +58,25 @@ function createInit(){
 
 	google.maps.event.addListener(map, "click", function (event) {
     	var latitude = event.latLng.lat();
-		var longitude = event.latLng.lng();
+			var longitude = event.latLng.lng();
 
     	var marker = new google.maps.Marker({map: map});
 
+//    function showPosition(position){
 	    pos = {
 	      lat: latitude,
 	      lng: longitude
 	    };
+
+//			posi = "{ lat: "+ latitude+ "," +"lng: "+ longitude+"}"; //testing to show whats stored in coords
 	    coords.push(pos);
+//			possi.push(posi);//
+//			alert("actual coords: "+possi); //
 
 	    marker.setPosition(pos);
 
 	    var runningPath = new google.maps.Polyline({
-    		path: coordsArray,
+    		path: coords,
     		geodesic: true,
     		strokeColor: '#FF0000',
     		strokeOpacity: 1.0,
@@ -77,6 +84,7 @@ function createInit(){
     	});
 		runningPath.setMap(map);
 	});
+
 
 	function showPosition(position){
     	pos = {

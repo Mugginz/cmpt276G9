@@ -1,7 +1,5 @@
 class ProgressesController < ApplicationController
 
-  #skip_before_action :verify_authenticity_token, only: [:create]
-
 	def create
 		name = params[:name]
 	  	count = params[:count]
