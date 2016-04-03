@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Course Create</title>
+
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<% render 'layouts/shim' %>
+</head>
+
+<body class="body_map">
+	
+
+	<div class="panel">
+		<%= link_to "Home", root_path %>
+		<%= link_to "All courses", courses_path %>
+		<div class="dropdown">
+			<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
+	  		<div id="myDropdown" class="dropdown-content">
+	  			<% if logged_in? %>
+					<li><%= link_to "Profile", current_u %></li>
+					<li><%= link_to "Settings", edit_user_path(current_u) %></li>
+					<li><%= link_to "Log out", logout_path, method: :delete %></li>
+				<% else %>
+					<li><%= link_to "Log in", login_path %></li>
+				<% end %>
+	  		</div>
+		</div>
+
+		<div class="col-xs-4 col-md-offset-4 form_style">
+		<%= form_for(@c) do |f| %>
+			<!-- %= render 'shared/error_messages' % -->
+
+	    	<%= f.label :name %>
+	    	<%= f.text_field :name, class: 'form-control', :id => "cn" %>
+
+	    	<%= f.label :region %>
+	     	<%= f.text_field :region, class: 'form-control', :id => "cr" %>
+
+	     	<!-- on click get nodes from script? -->
+	       	<%= f.submit "Create course", :class=> 'btn btn-primary btn-block', :id => "cc", remote: true %>
+	    <% end %>
+		</div>
+
+	</div>
+
+
+<div id="mapcreate" class="map"></div>
+
+</body>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ&callback=createInit" async defer>
+</script>
+
+<%= debug(params) if Rails.env.development? %>

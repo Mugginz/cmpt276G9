@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  user_id: 
+  checkpoints: false
+
+two:
+  name: MyText
+  user_id: 
+  checkpoints: false

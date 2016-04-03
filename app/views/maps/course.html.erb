@@ -9,59 +9,55 @@
 	<% render 'layouts/shim' %>
 </head>
 
-<% nodes = @c.coordinates %>
-<body class="body_map">
-<div id="map"></div>
-		<hr>
-	<div class="container">
+<body class="body_map" >
 
-		<div class="btn-group dropup">
-  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-		    Menu<span class="caret"></span>
-		  	</button>
-		  <ul class="dropdown-menu dropdown-menu-right" style="right: 0; left: auto;">
-		    		<li><%= link_to "Home", root_path %></li>
-			  	<% if logged_in? %>
-					<li><%= link_to "Profile", current_u %></li>
-					<li><%= link_to "Settings", edit_user_path(current_u) %></li>
-					<li><%= link_to "Log out", logout_path, method: :delete %></li>
-				<% else %>
-					<li><%= link_to "Log in", login_path %></li>
-				<% end %>
-		  </ul>
-		</div>
-
-<div class="row">
-		<h2>Course Search</h2>
-		<%= link_to "All Courses", course_twitter_path %>
-           <div id="custom-search-input">
-                            <div class="input-group col-md-12">
-                                <input type="text" class="  search-query form-control" placeholder="Search a course" />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button">
-                                        <span class=" glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-	</div>
-
-
-<!--		<div class="course_list" id="para" onClick="coords( <= nodes %> )">
-			Course selection: <= nodes %>
-		</div>
-		
-		<button id="bt", style="background-color: orange;">
-			submit
-		 </button> -->
-
-	</div>
 	
-		 		<hr>
+	<div class="container">
+			<div class="btn-group" role="group" >
+			  <button type="button" class="glyphicon glyphicon-home"> <%= link_to "Home", root_path %> </button>
+			  <button type="button" class="glyphicon glyphicon-th-list"> <%= link_to "All courses", courses_path %> </button>
+			  
+			  <% if logged_in? %>
+			   		<button type="button" class="glyphicon glyphicon-user"> <%= link_to "Profile", current_u %> </button>
+			  		<button type="button" class="glyphicon glyphicon-cog"> <%= link_to "Settings", edit_user_path(current_u) %> </button>
+			    	<button type="button" class="glyphicon glyphicon-pencil"> <%= link_to "Create course", create_path %> </button>			  	
+			    	<button type="button" class="glyphicon glyphicon-chevron-down"> <%= link_to "Log out", logout_path, method: :delete %> </button>
+			    <% else %>
+			  		<button type="button" class="glyphicon glyphicon-arrow-up"> <%= link_to "Log in", login_path %>  </button>
+			    <% end %>
+			</div>
+
+
+
+		<div id="timerdiv">
+			<div id="hours1_ele">0</div>
+			<div id="hours2_ele">0</div>
+			<div id="minutes1_ele">0</div>
+			<div id="minutes2_ele">0</div>
+			<div id="seconds1_ele">0</div>
+			<div id="seconds2_ele">0</div>			
+		</div>
+		<button onclick="startTimer()">Start</button>
+		<button onclick="clearTimer()">Clear</button>
+
+	<!-- search bar -->
+    <form class="search" method="post" action="">
+      <input type="search" name="q" placeholder="Search a course here..." autocomplete="off">
+      <ul class="search-ac">
+		<%= render 'courses/searchItems' %>
+      </ul>
+    </form>
+
+		<div class="course_list"></div>
+
+	</div>
+	<div id="map" class="map" ></div>
+<hr>
 </body>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ&callback=initialize" async defer>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ" onload="coords(<%= @coords %>)" async defer>
 </script>
+
 
 <%= debug(params) if Rails.env.development? %>
 

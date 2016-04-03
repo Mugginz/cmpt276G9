@@ -5,21 +5,22 @@
 	    <div class="navbar-header">
 			<%= link_to image_tag("/assets/logo.png", :class => "logo", alt:"Promptitude Logo"), root_path %>
 	    </div>
-	    <div class="navbar-mid">
-	    	<ul class="nav navbar-nav">
-	      		<li><%= link_to "About", about_path %></li>
-	      		<li><%= link_to "News", news_path %></li>
-	      		<li><%= link_to "Maps", location_path %></li> 
-	      		<li><%= link_to "Popular Courses", course_path %></li> 
-	    	</ul>
-	    </div>
-	    <ul class="navbar-login">
-	     	<% if logged_in? %>
-				<%= link_to "Profile", current_u, :class => "btn"%>
-				<%= link_to "Settings", edit_user_path(current_u), :class => "btn" %>
-				<%= link_to "Log out", logout_path, method: :delete, :class => "btn"%>
-			<% else %>
-				<!-- inline login -->
+
+	    <ul class="nav navbar-nav">
+	      <li><%= link_to "About", about_path %></li>
+	      <li><%= link_to "News", news_path %></li>
+
+
+	      <li><%= link_to "Maps", map_path %></li> 
+	      <li><%= link_to "Popular Courses", courses_path %></li> 
+	    </ul>
+	   	  <ul class="nav navbar-right">
+	      		<% if logged_in? %>
+					<%= link_to "Profile", current_u, :class => "btn"%>
+					<%= link_to "Settings", edit_user_path(current_u), :class => "btn" %>
+					<%= link_to "Log out", logout_path, method: :delete, :class => "btn"%>
+				<% else %>
+					<!-- inline login -->
 					<%= form_for(:session, url: login_path, html: { class: "navbar-form navbar-right form-inline" }) do |f| %> 
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>

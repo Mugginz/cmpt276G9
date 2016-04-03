@@ -4,18 +4,24 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  get 'location' => 'maps#location'
   get 'home' => 'statics#home'
   get 'about'=> 'statics#about'
   get 'news' => 'statics#news'
   get 'help' => 'statics#help'
   get 'signup' => 'users#new'
-  
-  get 'course_twitter' => 'maps#course_twitter'
+  get 'create' => 'courses#new'
+
   get 'course' => 'maps#course'
   post 'course' => 'maps#update'
   patch 'course' => 'maps#update'
-  
+  get 'course_twitter' => 'maps#course_twitter'
+
+
+  get 'map' => 'maps#course'
+  post 'map' => 'maps#update'
+  patch 'map' => 'maps#update'
+
+  post 'create' => 'courses#create'
 
   resources :users
   resources :courses

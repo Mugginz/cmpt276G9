@@ -1,89 +1,61 @@
 // # Place all the behaviors and hooks related to the matching controller here.
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
-//
-
-// --- AJAX Prototying
-var coordsArray = [[49.28113,-123.03621],[49.28113,-123.03747],[49.28113,-123.03880],[49.28063,-123.03880],[49.28022,-123.03880],[49.28022,-123.03754],[49.28022,-123.03623]];
-
-function coords(c){
-  if(c[0][0] == 4 ){
-    c[0] = [20,30];
-  }else{
-    c[0] = [2,4];
-  };
-  document.getElementById("para").innerHTML = JSON.stringify(c);
-
-  ctmp = c;
-  return c;
-};
-
-$("document").ready(function() {
-
-  $("#para").click(function() {
-    $("#para").css("background-color", "cyan");
-    var e = $('<p>Appended text </p>');
-    $("#para").append(e);
-    e.attr("id", "p2");
-  });
-
-  $("#bt").click(function(){
-    var pack = JSON.stringify(ctmp);
-    alert("data package: " + pack);
-    $.ajax({
-      type: "PATCH",
-      url: "/course",
-      data: {coords: pack},
-      success: function(){
-        alert("posted");
-      },
-      error: function(){
-        alert("fail");
-      }
-    });
-  });
-
-});
-// --- ---
-
-// --- G-Maps API functions 
-function initialize(){
-
-  //setting up initial map of Vancouver
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 49.2827, lng: -123.1207},
-    zoom: 18
-  });
 
 /*
-  //test course1: sfu parking lot by ASB  //passed
-  var fixedCoordsArray = [
-    {lat: 49.277575, lng: -122.912986},
-    {lat: 49.277460, lng: -122.912310},
-    {lat: 49.277365, lng: -122.911674}
-  ];
+var keepRunning = 0; //flag for ending js when user leaves map view. 0 = run, 1 = exit.
+
+function runMode(){ // views that are accessible from map view will call this function to end js script
+  keepRunning = 1;
+};
 */
 
-//Course 1: Hastings Community Park
-var fixedCoordsArray = [
-  {lat: 49.28113, lng: -123.03621}, //49.281095, -123.036216
-  {lat: 49.28113, lng: -123.03747}, //49.281107, -123.037477
-  {lat: 49.28113, lng: -123.03880}, //49.281112, -123.038783
-  {lat: 49.28063, lng: -123.03880},  //49.280638, -123.038794
-  {lat: 49.28022, lng: -123.03880}, //49.280229, -123.038787
-  {lat: 49.28022, lng: -123.03754}, //49.280225, -123.037540
-  {lat: 49.28022, lng: -123.03623} //49.280225, -123.036234
-];
+var coordsArray = [];
+var map;
 
+function coords(c){
+
+//  alert("coords");
+  if (c != null){ //deals with clicking the 'popular maps' link which does not pass coords
+
+    for (i=0; i< c.length; i++){
+//    coordsArray[i] = "{lat:"+ c[i][0]+","+ "lng:" +c[i][1]+"}";
+      coordsArray[i] = {lat: c[i][0] ,lng: c[i][1]};
+    }
+  }
+//alert(coordsArray);//test
+
+  initialize();
+};
+
+function initialize(){
+  var zoomzoom = 17; //amount of zoom-in on map to display course
+//alert("init");
+  //upon viewing maps#course first time, there are no coords in coordsArray, so just render map of Vancouver
+  if(coordsArray.length < 1 || coordsArray == null){
+    zoomzoom = 12;
+  }
+
+  //setting up initial map of Vancouver
+   map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 49.2827, lng: -123.1207},
+    zoom: zoomzoom
+  });
+
+  if(coordsArray.length < 1 || coordsArray == null){
+    return;
+  }
+/*  keepRunning = 0;
+*/
   //array of markers
   var markersArray = [];
 
   //creating a marker for each fixed coordinates in fixedCoordsArray
-  for (i = 0; i < fixedCoordsArray.length; i++){
+  for (i = 0; i < coordsArray.length; i++){
     var marker = new google.maps.Marker(
       { map: map,
         id: i,    //able to identify a specific marker to do stuff to
-        position: fixedCoordsArray[i]
+        position: coordsArray[i]
       }
     );
 
@@ -94,31 +66,30 @@ var fixedCoordsArray = [
           infoWindowStart.open(map, marker); //infowindow to indicate first marker
     }
     //show infowindow to show where the last marker is
-    if (i == fixedCoordsArray.length - 1){
+    if (i == coordsArray.length - 1){
           infoWindowEnd = new google.maps.InfoWindow({map: map});
           infoWindowEnd.setContent("End");
           infoWindowEnd.open(map, marker); //infowindow to indicate last marker
     }
 
     markersArray.push(marker);                //marker added to array; able to identify
-    marker.setPosition(fixedCoordsArray[i]);  //marker set on map
+    marker.setPosition(coordsArray[i]);  //marker set on map
   }
 
-  map.setCenter({lat: 49.28063, lng: -123.03754}); //center map around middle of the course: Hastings Park
-//  map.setCenter(fixedCoordsArray[Math.floor(fixedCoordsArray.length /2)]); //center map to the median checkpoint //for ~linear courses
+  map.setCenter(coordsArray[Math.floor(coordsArray.length /2)]); //center map to the median checkpoint //for ~linear courses
 
   //path of course drawn as polyline
   var coursePath = new google.maps.Polyline(
     {
-      path: fixedCoordsArray,
+      path: coordsArray,
       geodesic: true,
       strokeColor: '#808080',  //#808080 grey //#FF0000 red
       strokeOpacity: 1.0,
-      strokeWeight: 4
+      strokeWeight: 4,
+      map: map  //sets polyline on map
     }
   );
 
-  coursePath.setMap(map);   //sets the polyline on map
 
 //////////////////////////////////////Note for Dan: ^^^^able to run independently; future refactoring////////////////////////
 
@@ -134,6 +105,12 @@ var fixedCoordsArray = [
 
     //overall: 1)gets user's position, 2)display it, 3)draws polyline, 4)repeat
     function repeatUpdatePos(){
+
+/*      //checks if js should stop executing
+      if(keepRunning == 1){
+        return;
+      }
+*/
       //get user's coordinates
       if( navigator.geolocation ){
         navigator.geolocation.getCurrentPosition(showPosition, errorMessage); //user's coords are in an position object passed into the function showPosition
@@ -163,10 +140,11 @@ var fixedCoordsArray = [
           geodesic: true,
           strokeColor: '#3333CC', //line color: blue
           strokeOpacity: 1.0,
-          strokeWeight: 4         //path travelled line is 1 unit thicker than course path
+          strokeWeight: 4,         //path travelled line is 1 unit thicker than course path
+          map: map
         });
 
-        runningPath.setMap(map);  //set polyline on map
+//        runningPath.setMap(map);  //set polyline on map
 
         //checks if a checkpoint is reached
         reachCheckpoint(pos);
@@ -182,17 +160,19 @@ var fixedCoordsArray = [
     }
     //checks if user has reached checkpoint
     function reachCheckpoint(pos){
-      //if user's latitude and longitude matches to 5 decimal places of the checkpoint's, then checkpoint is declared reached
-      if( pos.lat.toFixed(4) == fixedCoordsArray[checked].lat.toFixed(4) && pos.lng.toFixed(4) == fixedCoordsArray[checked].lng.toFixed(4) ){
+
+      //if user's latitude and longitude matches to 4 decimal places of the checkpoint's, then checkpoint is declared reached
+      if( pos.lat.toFixed(4) == coordsArray[checked].lat.toFixed(4) && pos.lng.toFixed(4) == coordsArray[checked].lng.toFixed(4) ){
 
 
         markersArray[checked].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');  //shows a green marker
 
-        checkArray[checked] = fixedCoordsArray[checked]; //store reached checkpoint in this array
+        checkArray[checked] = coordsArray[checked]; //store reached checkpoint in this array
         checked = checked + 1;  //next time reachCheckpoint(pos) is called, it will compare current position with the next checkpoint not declared reached
 
         if(checked == 1){
               infoWindowStart.close(map, markersArray[0]); //get rid of start infowindow
+
         }
 
         //draws a new polyline that is blue between all reached checkpoints
@@ -202,14 +182,15 @@ var fixedCoordsArray = [
             geodesic: true,
             strokeColor: '#006633', //blue
             strokeOpacity: 1.0,
-            strokeWeight: 2
+            strokeWeight: 2,
+            map: map
           }
         );
-        checkPath.setMap(map);  //set polyline on map
+//        checkPath.setMap(map);  //set polyline on map
 
         //#FLAG THIS CHECKPOINT DATABASE#//
 
-        if(checked == fixedCoordsArray.length ){  //if user has reached all checkpoints
+        if(checked == coordsArray.length ){  //if user has reached all checkpoints
 
           infoWindowEnd.close(map, markersArray[markersArray.length -1]);  //close infowindow displaying "end"
 
@@ -222,6 +203,7 @@ var fixedCoordsArray = [
 
         }
       }
+      
     }
-  }
+  };
 // --- ---
