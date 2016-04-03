@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327222846) do
+ActiveRecord::Schema.define(version: 20160401081231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,16 +26,27 @@ ActiveRecord::Schema.define(version: 20160327222846) do
 
   add_index "courses", ["name"], name: "index_courses_on_name", unique: true, using: :btree
 
+  create_table "progresses", force: :cascade do |t|
+    t.text     "name"
+    t.integer  "user_id"
+    t.boolean  "checkpoints",              array: true
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "progresses", ["user_id"], name: "index_progresses_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "remember_digest"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "progresses", "users"
 end

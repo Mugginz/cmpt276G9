@@ -26,13 +26,23 @@ class CoursesController < ApplicationController
 	  else
 		  arr = eval(package)
 		  @c = Course.new(name: n, region: r, coordinates: arr)
-		  if @c.save
+      if @c.save
 			  flash[:success] = "Course creation successful."
 			  redirect_to '/courses'
 		  else
 		    redirect_to '/create'
-		  end
+      end
 	  end
+  end
+
+  def destroy
+    Course.find(params[:id]).destroy
+    flash[:success] = "Course deletion successful."
+    if current_u.admin?
+      redirect_to(courses_url)
+    else
+      redirect_to(root_url)
+    end
   end
 
 end
