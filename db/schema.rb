@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403022435) do
+ActiveRecord::Schema.define(version: 20160403203504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(version: 20160403022435) do
     t.text     "name"
     t.integer  "user_id"
     t.integer  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "complete",   default: false
   end
 
   add_index "progresses", ["user_id"], name: "index_progresses_on_user_id", using: :btree
@@ -40,10 +41,10 @@ ActiveRecord::Schema.define(version: 20160403022435) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "remember_digest"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

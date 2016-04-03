@@ -188,7 +188,7 @@ j = j+1;   //for testing checkpoint reach
         $.ajax({
           type: "POST",
           url: "/progresses",
-          data: {name: n, count: checked},
+          data: {name: n, count: checked, done: false},
           success: function(){
             alert("posted");
           },
@@ -200,7 +200,17 @@ j = j+1;   //for testing checkpoint reach
 
         //if user has reached all checkpoints
         if(checked == coordsArray.length ){
-
+          $.ajax({
+            type: "POST",
+            url: "/progresses",
+            data: {name: n, count: checked, done: true},
+            success: function(){
+              alert("posted");
+            },
+            //error: function(){
+            //  alert("fail");
+            //}
+          });
           //stops timer
           clearTimer();
 
