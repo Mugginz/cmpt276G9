@@ -13,8 +13,8 @@
       <%#= course.id %>
       <%= c.region %> :
       <%= c.coordinates %>
-      <% if current_u.admin? %>
-        | <%= button_to "delete", c, method: :delete, data: {confirm: "This action cannot be undone. Are you sure?"} %>
+      <% if logged_in? && current_u.admin? %>
+        <%= button_to "delete", c, method: :delete, data: {confirm: "This action cannot be undone. Are you sure?"} %>
       <% end %>
     </li>
   <% end %>

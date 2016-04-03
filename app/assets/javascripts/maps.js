@@ -2,20 +2,19 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
-/*
+
 var keepRunning = 0; //flag for ending js when user leaves map view. 0 = run, 1 = exit.
 
 function runMode(){ // views that are accessible from map view will call this function to end js script
   keepRunning = 1;
+//  alert("runmode");
 };
-*/
 
 var coordsArray = [];
 var map;
 
-function coords(c){
+function coords(n, c){
 
-//  alert("coords");
   if (c != null){ //deals with clicking the 'popular maps' link which does not pass coords
 
     for (i=0; i< c.length; i++){
@@ -23,14 +22,13 @@ function coords(c){
       coordsArray[i] = {lat: c[i][0] ,lng: c[i][1]};
     }
   }
-//alert(coordsArray);//test
 
-  initialize();
+  initialize(n);
 };
 
-function initialize(){
+function initialize(n){
   var zoomzoom = 17; //amount of zoom-in on map to display course
-//alert("init");
+
   //upon viewing maps#course first time, there are no coords in coordsArray, so just render map of Vancouver
   if(coordsArray.length < 1 || coordsArray == null){
     zoomzoom = 12;
@@ -45,8 +43,8 @@ function initialize(){
   if(coordsArray.length < 1 || coordsArray == null){
     return;
   }
-/*  keepRunning = 0;
-*/
+  keepRunning = 0;
+
   //array of markers
   var markersArray = [];
 
@@ -72,8 +70,8 @@ function initialize(){
           infoWindowEnd.open(map, marker); //infowindow to indicate last marker
     }
 
-    markersArray.push(marker);                //marker added to array; able to identify
-    marker.setPosition(coordsArray[i]);  //marker set on map
+    markersArray.push(marker);
+    marker.setPosition(coordsArray[i]);
   }
 
   map.setCenter(coordsArray[Math.floor(coordsArray.length /2)]); //center map to the median checkpoint //for ~linear courses
@@ -83,37 +81,35 @@ function initialize(){
     {
       path: coordsArray,
       geodesic: true,
-      strokeColor: '#808080',  //#808080 grey //#FF0000 red
+      strokeColor: '#808080',  //#808080 grey
       strokeOpacity: 1.0,
       strokeWeight: 4,
-      map: map  //sets polyline on map
+      map: map
     }
   );
 
-
-//////////////////////////////////////Note for Dan: ^^^^able to run independently; future refactoring////////////////////////
-
   var checkArray = [];  //stores all reached checkpoints to draw a polyline to all reached checkpoints
-  var checked = 0;  //current index of fixedCoordsArray to compare to user's coords
+  var checked = 0;  //current index of coordsArray to compare to user's coords
   var userCoordsArray = []; //stores user's coordinates to draw polyline to all user coords
 
   var marker = new google.maps.Marker({map: map});  //create new marker object; this marker will move to the user's most recent coords
 
-  repeatUpdatePos();
+  var repeater = setInterval(function(){repeatUpdatePos()},2000);
+//  repeatUpdatePos();
 
-//var j = 0;  //for testing checkpoint reach
+var j = 0;  //for testing checkpoint reach
 
     //overall: 1)gets user's position, 2)display it, 3)draws polyline, 4)repeat
     function repeatUpdatePos(){
 
-/*      //checks if js should stop executing
+      //checks if js should stop executing
       if(keepRunning == 1){
         return;
       }
-*/
+
       //get user's coordinates
       if( navigator.geolocation ){
-        navigator.geolocation.getCurrentPosition(showPosition, errorMessage); //user's coords are in an position object passed into the function showPosition
+        navigator.geolocation.getCurrentPosition(showPosition, errorMessage);
       }
       else{
         alert("Error: This browser does not support geolocation.");
@@ -121,17 +117,16 @@ function initialize(){
 
       //displays current user position and draws polyline
       function showPosition(position){
-        //get the coords from the position object
         pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
 
-//pos = fixedCoordsArray[j]; //for testing checkpoint reached
+pos = coordsArray[j]; //for testing checkpoint reached
 
-        userCoordsArray.push(pos);  //push coords into array
+        userCoordsArray.push(pos);
         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png')
-        marker.setPosition(pos);    //set marker at the coords
+        marker.setPosition(pos);
 //#        map.setCenter(pos);         //center the map to the user coords   //currently disabled, because it's annoying when you are far from course
 
         //draws the path travelled so far by user
@@ -140,42 +135,44 @@ function initialize(){
           geodesic: true,
           strokeColor: '#3333CC', //line color: blue
           strokeOpacity: 1.0,
-          strokeWeight: 4,         //path travelled line is 1 unit thicker than course path
+          strokeWeight: 4,
           map: map
         });
 
-//        runningPath.setMap(map);  //set polyline on map
-
         //checks if a checkpoint is reached
         reachCheckpoint(pos);
-//j = j+1;   //for testing checkpoint reach
+j = j+1;   //for testing checkpoint reach
       }
-
         //loops current function every interval (in ms); i.e. every cycle: get user position, store it into array, redraw polyline with new coords
-        setTimeout(repeatUpdatePos,2000);
+        setTimeout(repeatUpdatePos,5000);
 
       function errorMessage(error){
         alert("Error: Location info is unavailable.");
       }
     }
+
+//    repeater = setTimeout(repeatUpdatePos,2000);
     //checks if user has reached checkpoint
     function reachCheckpoint(pos){
 
       //if user's latitude and longitude matches to 4 decimal places of the checkpoint's, then checkpoint is declared reached
       if( pos.lat.toFixed(4) == coordsArray[checked].lat.toFixed(4) && pos.lng.toFixed(4) == coordsArray[checked].lng.toFixed(4) ){
 
-
         markersArray[checked].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');  //shows a green marker
 
-        checkArray[checked] = coordsArray[checked]; //store reached checkpoint in this array
+        checkArray[checked] = coordsArray[checked];
         checked = checked + 1;  //next time reachCheckpoint(pos) is called, it will compare current position with the next checkpoint not declared reached
 
         if(checked == 1){
-              infoWindowStart.close(map, markersArray[0]); //get rid of start infowindow
-
+              //get rid of start infowindow
+              infoWindowStart.close(map, markersArray[0]);
         }
 
-        //draws a new polyline that is blue between all reached checkpoints
+        //erase the user polyline from previous checkpoint to current
+        userCoordsArray.length = 0;
+        userCoordsArray[0] = coordsArray[checked]; //user polyline will now start at current checkpoint
+
+        //draws a polyline between all reached checkpoints
         var checkPath = new google.maps.Polyline(
           {
             path: checkArray,
@@ -186,24 +183,52 @@ function initialize(){
             map: map
           }
         );
-//        checkPath.setMap(map);  //set polyline on map
 
         //#FLAG THIS CHECKPOINT DATABASE#//
+        $.ajax({
+          type: "POST",
+          url: "/progresses",
+          data: {name: n, count: checked, done: false},
+          success: function(){
+            alert("posted");
+          },
+          //error: function(){
+          //  alert("fail");
+          //}
+        });
+        console.log("checed: " + checked)
 
-        if(checked == coordsArray.length ){  //if user has reached all checkpoints
+        //if user has reached all checkpoints
+        if(checked == coordsArray.length ){
+          $.ajax({
+            type: "POST",
+            url: "/progresses",
+            data: {name: n, count: checked, done: true},
+            success: function(){
+              alert("posted");
+            },
+            //error: function(){
+            //  alert("fail");
+            //}
+          });
+          //stops timer
+          clearTimer();
+
+          //stops updating map
+          clearInterval(repeater);
+//          runMode();
 
           infoWindowEnd.close(map, markersArray[markersArray.length -1]);  //close infowindow displaying "end"
 
-//          alert("Course Completed! Well Done!") //future: display big alert window to congratulate
+          alert("Course Completed! Well Done!") //future: display big alert window to congratulate
           infoWindow = new google.maps.InfoWindow({map: map});
           infoWindow.setContent("Course Completed!");
           infoWindow.open(map, markersArray[markersArray.length -1]); //opens a infowindow ontop of the last marker
 
-          coursePath.setMap(null); //removes the course path polyline (get rid of that red line entirely)
-
+          //removes the course path polyline
+          coursePath.setMap(null);
         }
       }
-      
     }
   };
 // --- ---
