@@ -6,7 +6,16 @@
 var deleteMode = 1;
 
 function deleteMarkerMode(){
-	deleteMode = 0;
+	if (deleteMode == 0){
+		deleteMode = 1;
+		document.getElementById("toggleDelete").innerHTML = "Delete Markers";
+		document.getElementById("toggleNote").innerHTML = "Click on map to add markers.";
+	}
+	else{
+		deleteMode = 0;
+		document.getElementById("toggleDelete").innerHTML = "Add Markers";
+		document.getElementById("toggleNote").innerHTML = "Click on markers to delete them.";
+	}
 }
 
 function createInit(){
