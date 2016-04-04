@@ -87,7 +87,17 @@ function initialize(){
       map: map
     }
   );
+//////////////////////////////////////#########################################################################
+function zoom() {
+  var bounds = new google.maps.LatLngBounds();
+  for(var i = 0; i < coordsArray.length; i++){
+    bounds.extend(coordsArray[i]);
 
+  }
+
+  map.fitBounds(bounds);
+}
+//////////////////////////////////////////////////////##################################################################
   var checkArray = [];  //stores all reached checkpoints to draw a polyline to all reached checkpoints
   var checked = 0;  //current index of coordsArray to compare to user's coords
   var userCoordsArray = []; //stores user's coordinates to draw polyline to all user coords
