@@ -3,13 +3,27 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 //
 
+var deleteMode = 1;
+
+function deleteMarkerMode(){
+	if (deleteMode == 0){
+		deleteMode = 1;
+		document.getElementById("toggleDelete").innerHTML = "Delete Markers";
+		document.getElementById("toggleNote").innerHTML = "Click on map to add markers.";
+	}
+	else{
+		deleteMode = 0;
+		document.getElementById("toggleDelete").innerHTML = "Add Markers";
+		document.getElementById("toggleNote").innerHTML = "Click on markers to delete them.";
+	}
+}
+
 function createInit(){
 
 	var coords = [];
 	var markersArr = [];
 	var lines = []; //stores polylines
 	var j = 0; // length of markerArr
-	var k = 0; // index of lines[]
 	var runningPath; //polyline of markers
 
 	$("#cc").click(function(){
@@ -58,7 +72,9 @@ function createInit(){
 
 	var infoWindowStart, infoWindowEnd;
 
+	//adding markers onto map
 	google.maps.event.addListener(map, "click", function (event) {
+		if(deleteMode == 1){
     	var latitude = event.latLng.lat();
 			var longitude = event.latLng.lng();
 
@@ -83,10 +99,19 @@ function createInit(){
 	//    marker.setPosition(pos);
 
 
+			updatePath();
 
+				//deletes clicked markers if deleteMode is on
+			google.maps.event.addListener(marker, 'click', function(){
+//					alert("delete listener "+marker.unique_id);
+/*					if(deleteMode = 0){
+						alert("delete mode on");
+						marker.setMap(null);
+					}
+*/
+					deleteMarkers(marker.unique_id);
 
-
-				updatePath();
+				});
 
 				//redraw polyline after a marker is dragged in place
 				google.maps.event.addListener(marker, 'dragend', function() {
@@ -98,6 +123,7 @@ function createInit(){
 
 					updatePath();
 				});
+		}
 	});
 
 	function updatePath(){
@@ -117,7 +143,29 @@ function createInit(){
 		lines.push(runningPath);
 		lines[lines.length -1].setMap(map); //sets the new polyline on map
 	}
-/*
+
+	function deleteMarkers(markerId){
+		if (deleteMode == 0){
+			for (var i = 0; i < markersArr.length; i++){
+				if (markerId == markersArr[i].unique_id){
+					markersArr[i].setMap(null);
+					markersArr.splice(i, 1); //removes marker at index markerId and shifts rest of elements
+					break;
+				}
+			}
+			coords = [];
+			for(var i = 0; i < markersArr.length; i++){
+				coords.push(markersArr[i].position);
+//		alert("coords length: "+coords.length);//
+			}
+			updatePath();
+//			alert("markersArr length:"+ markersArr.length+"coords length: "+coords.length);//
+//			alert("coords: "+ coords+"  markersArr: "+ markersArr[0].position+ ", "+markersArr[markersArr.length-1].position);
+		}
+	}
+
+
+/* //too implement later if time permits
 	function windowsDisplay(){
 		//show infowindow to show where the start marker is
 		if (infoWindowStart == null && markersArr.length > 0){
@@ -139,6 +187,7 @@ function createInit(){
 	}
 	*/
 ///////////////////
+
 	function showPosition(position){
     	pos = {
     		lat: position.coords.latitude,
