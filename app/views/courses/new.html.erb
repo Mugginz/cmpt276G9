@@ -32,7 +32,6 @@
 
 		<div class="col-xs-4 col-md-offset-4 form_style">
 		<%= form_for @c do |f| %>
-			<!-- %= render 'shared/error_messages' % -->
 
 	    	<%= f.label :name %>
 	    	<%= f.text_field :name, class: 'form-control', :id => "cn" %>
@@ -40,7 +39,6 @@
 	    	<%= f.label :region %>
 	     	<%= f.text_field :region, class: 'form-control', :id => "cr" %>
 
-	     	<!-- on click get nodes from script? -->
 	       	<%= f.submit "Create course", :class=> 'btn btn-primary btn-block', :id => "cc" %>
 	    <% end %>
 		</div>

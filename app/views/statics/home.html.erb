@@ -1,21 +1,22 @@
 <% provide(:title, "Home") %>
+<meta name="viewport" content="initial-scale=1">
 
 <h2 class="home_page_text">Welcome to Promptitude.</h2>
 
-<div class= "table-responsive">
-<table class='table table-borderless'>
-    <tr>
-    <td class="home_page_content"> <%= link_to image_tag("/assets/new_home_page_1.png",style:'width:50%;height:100%;',alt:"Introduction_1"), signup_url %> </td>
-    <td class="home_page_content"> <%= link_to image_tag("/assets/new_home_page_2.png",style:'width:65%;height:100%;',alt:"Introduction_2"), courses_path %> </td>
-    <td class="home_page_content"> <%= link_to image_tag("/assets/new_home_page_3.png",style:'width:65%;height:100%;',alt:"Introduction_2"), map_path %> </td>
-    </tr>
-    <tr>
-        <td class="home_page_content"> <h4>1. Sign Up</h4></td>
-        <td class="home_page_content"> <h4>2. Pick a course</h4></td>
-        <td class="home_page_content"> <h4>3. Run!!</h4></td>
-    </tr>
+<div class= "homepage">
+    <div class="home_page_content step1">
+        <%= link_to image_tag("/assets/new_home_page_1.png",style:'max-width:100%;max-height:100%;',alt:"Introduction_1"), signup_url %>
+        <p class="home_page_text">1. Sign Up</p>
+    </div>
+    <div class="home_page_content step2">
+        <%= link_to image_tag("/assets/new_home_page_2.png",style:'max-width:100%;max-height:100%;',alt:"Introduction_2"), courses_path %>
+        <p class="home_page_text">2. Pick a course</p>
+    </div>
+    <div class="home_page_content step3">
+        <%= link_to image_tag("/assets/new_home_page_3.png",style:'max-width:100%;max-height:100%;',alt:"Introduction_3"), map_path %>
+        <p class="home_page_text">3.Run!!</p>
+    </div>
 
-</table>
 </div>
 
 <script>

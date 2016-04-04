@@ -10,25 +10,23 @@
 </head>
 
 <body class="body_map" >
-	<div id="map" class="map" ></div>
 
-	<div class="panel">
-		<%= link_to "Home", root_path %>
-		<%= link_to "All courses", courses_path %>
-		<%= link_to "Create course", create_path %>
-		<div class="dropdown">
-			<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
-	  		<div id="myDropdown" class="dropdown-content">
-	  			<% if logged_in? %>
-					<li><%= link_to "Profile", current_u %></li>
-					<li><%= link_to "Settings", edit_user_path(current_u) %></li>
-					<li><%= link_to "Log out", logout_path, method: :delete %></li>
-				<% else %>
-					<li><%= link_to "Log in", login_path %></li>
-				<% end %>
-	  		</div>
-		</div>
-		<%= render 'searchItems' %>
+	<div id="map" class="map" ></div>
+	
+	<div class="container">
+			<div class="btn-group" role="group" >
+			  <button type="button" class="glyphicon glyphicon-home"> <%= link_to "Home", root_path %> </button>
+			  <button type="button" class="glyphicon glyphicon-th-list"> <%= link_to "All courses", courses_path %> </button>
+			  
+			  <% if logged_in? %>
+			   		<button type="button" class="glyphicon glyphicon-user"> <%= link_to "Profile", current_u %> </button>
+			    	<button type="button" class="glyphicon glyphicon-pencil"> <%= link_to "Create course", create_path %> </button>			  	
+			    	<button type="button" class="glyphicon glyphicon-chevron-down"> <%= link_to "Log out", logout_path, method: :delete %> </button>
+			    <% else %>
+			  		<button type="button" class="glyphicon glyphicon-arrow-up"> <%= link_to "Log in", login_path %>  </button>
+			    <% end %>
+			</div>
+
 		<div id="timerdiv">
 			<div id="hours1_ele">0</div>
 			<div id="hours2_ele">0</div>
@@ -44,6 +42,19 @@
 
 	</div>
 
+
+	<!-- search bar -->
+    <form class="search" method="post" action="">
+      <input type="search" name="q" placeholder="Search a course here..." autocomplete="on">
+      <ul class="search-ac">
+		<%= render 'searchItems' %>
+      </ul>
+    </form>
+
+		<div class="course_list"></div>
+
+	</div>
+<hr>
 </body>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ" onload="coords('<%= @na %>',<%= @coords %>)" async defer>
@@ -51,3 +62,4 @@
 
 
 <%= debug(params) if Rails.env.development? %>
+

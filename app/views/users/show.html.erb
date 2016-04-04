@@ -1,17 +1,18 @@
 <% provide(:title, @u.name) %>
 
-<div class="profile_container" style="margin:0 0 0 0;">
+<div class="container">
 	<aside class="user_identity">
-		<h2>
+		<h2 style="color: #e6e6e8">
 			<%= avatar_for @u %>
 			<%= @u.name %>
 		</h2>
+		<%= link_to "Edit Profile", edit_user_path(current_u), :class => "btn" %>
 	</aside>
 	
 	<div class="user_profile">
-		<p> Name: <%=@u.name %> </p>
+
 		<p>Routes Completed:</p>
-		<table class="courses_completed">
+		<table class="col-xs-4 col-md-offset-4 form_style">
 			<tr>
 				<th>Course</th>
 				<th>Completed</th>
