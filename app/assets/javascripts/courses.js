@@ -84,6 +84,20 @@ function createInit(){
 	    };
 
 	    coords.push(pos);
+/////////
+//myLatLng = new google.maps.LatLng({lat: -34, lng: 151});
+//alert(myLatLng.lat());
+/*			var a = [];
+			a.push([1,2]);
+			a.push([2,4]);
+			var b = [];
+			b.push({hi: 1, bye: 2});
+			b.push({hi: 3, kill: 4});
+			alert(a);
+			alert(b);
+*/
+////
+
 
 			var marker = new google.maps.Marker(
 				{ map: map,
@@ -119,6 +133,13 @@ function createInit(){
 					var	position = this.getPosition(); //get LatLng of marker
 					var index = markersArr.indexOf(this); //get the index of this marker
 
+///////
+/*					alert("getPosition: " +position);
+					position = {lat: position.lat(), lng: position.lng()};
+					alert("position: " +position);
+					*/
+//////
+
 					coords[index] = position;	//update new coordinate in array
 
 					updatePath();
@@ -153,10 +174,14 @@ function createInit(){
 					break;
 				}
 			}
+
 			coords = [];
 			for(var i = 0; i < markersArr.length; i++){
-				coords.push(markersArr[i].position);
-//		alert("coords length: "+coords.length);//
+//				markersArr[i].unique_id = i;	//reassign the marker id's to match its index
+//alert("positionmarker: "+ markersArr[i].position.lat());
+				latLngLiteral = {lat: markersArr[i].position.lat(), lng: markersArr[i].position.lng()};
+//alert("latlnglit: "+latLngLiteral);
+				coords.push(latLngLiteral);	//
 			}
 			updatePath();
 //			alert("markersArr length:"+ markersArr.length+"coords length: "+coords.length);//
