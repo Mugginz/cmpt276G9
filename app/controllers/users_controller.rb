@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   def show
   	@u = User.find(params[:id])
+    @p = @u.progresses
+    @courses = Course.all
   end
 
   def index

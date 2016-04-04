@@ -1,7 +1,5 @@
 class CoursesController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, only: [:create]
-
   def index
     @courses = Course.all
     render :layout => false
@@ -27,10 +25,10 @@ class CoursesController < ApplicationController
 		  arr = eval(package)
 		  @c = Course.new(name: n, region: r, coordinates: arr)
       if @c.save
-			  flash[:success] = "Course creation successful."
-			  redirect_to '/courses'
-		  else
-		    redirect_to '/create'
+	      flash[:success] = "Course creation successful."
+		    redirect_to '/courses'
+      else
+        redirect_to '/create'
       end
 	  end
   end

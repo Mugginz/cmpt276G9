@@ -13,7 +13,7 @@ function runMode(){ // views that are accessible from map view will call this fu
 var coordsArray = [];
 var map;
 
-function coords(c){
+function coords(n, c){
 
   if (c != null){ //deals with clicking the 'popular maps' link which does not pass coords
 
@@ -23,10 +23,10 @@ function coords(c){
     }
   }
 
-  initialize();
+  initialize(n);
 };
 
-function initialize(){
+function initialize(n){
   var zoomzoom = 17; //amount of zoom-in on map to display course
 
   //upon viewing maps#course first time, there are no coords in coordsArray, so just render map of Vancouver
@@ -143,8 +143,8 @@ pos = coordsArray[j]; //for testing checkpoint reached
         reachCheckpoint(pos);
 j = j+1;   //for testing checkpoint reach
       }
-        //loops current function every interval (in ms)
-//       setTimeout(repeatUpdatePos,2000);
+        //loops current function every interval (in ms); i.e. every cycle: get user position, store it into array, redraw polyline with new coords
+        setTimeout(repeatUpdatePos,5000);
 
       function errorMessage(error){
         alert("Error: Location info is unavailable.");
@@ -185,10 +185,32 @@ j = j+1;   //for testing checkpoint reach
         );
 
         //#FLAG THIS CHECKPOINT DATABASE#//
+        $.ajax({
+          type: "POST",
+          url: "/progresses",
+          data: {name: n, count: checked, done: false},
+          success: function(){
+            alert("posted");
+          },
+          //error: function(){
+          //  alert("fail");
+          //}
+        });
+        console.log("checed: " + checked)
 
         //if user has reached all checkpoints
         if(checked == coordsArray.length ){
-
+          $.ajax({
+            type: "POST",
+            url: "/progresses",
+            data: {name: n, count: checked, done: true},
+            success: function(){
+              alert("posted");
+            },
+            //error: function(){
+            //  alert("fail");
+            //}
+          });
           //stops timer
           clearTimer();
 
