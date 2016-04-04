@@ -13,7 +13,6 @@
 	    <ul class="nav navbar-nav navbar-right">
 	      		<% if logged_in? %>
 					<%= link_to "Profile", current_u, :class => "btn"%>
-					<%= link_to "Settings", edit_user_path(current_u), :class => "btn" %>
 					<%= link_to "Log out", logout_path, method: :delete, :class => "btn"%>
 				<% else %>
 					<%= form_for(:session, url: login_path, html: { class: "navbar-form navbar-right form-inline" }) do |f| %> 
