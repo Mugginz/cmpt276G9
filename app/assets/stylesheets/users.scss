@@ -12,6 +12,12 @@
 .form-control{
 	color: white;
 }
+.new_form{
+	width:50%;
+	margin-left:25%;
+	margin-right:25%;
+	color:white;
+}
 /* --- show --- */
 .profile_container {
 	text-align: left;
@@ -34,6 +40,12 @@ table,th,td{
 /*---  edit  ---*/
 #edit_profile .edit_input{
 	width:300px;
+}
+.edit_form{
+	width:50%;
+	margin-left:25%;
+	margin-right:25%;
+	color:white;
 }
 /* --- index --- */
 .all_users{

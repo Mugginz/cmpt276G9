@@ -1,0 +1,21 @@
+<% provide(:title, 'Course List') %>
+<h1>List of courses</h1>
+
+<ul class="courses">
+  <% @courses.each do |c| %>
+    <li>
+      <!-- fix 'link_to' to load a course instead -->
+     <%= link_to c.name, c %>,
+      <%#= link_to c.name, map_path, id: "linkcourse" %>,
+      <%#= link_to c.name, map_path(:course_name => c.id) %>,
+      <%#= link_to c.name, map_path(:cid => c.id) %>
+      <%#= link_to c.name, map_path(:c_id => c.id) %>
+      <%#= course.id %>
+      <%= c.region %> :
+      <%= c.coordinates %>
+      <% if logged_in? && current_u.admin? %>
+        <%= button_to "delete", c, method: :delete, data: {confirm: "This action cannot be undone. Are you sure?"} %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
