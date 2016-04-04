@@ -2,12 +2,29 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
+var reloadCheck = 0;
+
+function reloadPage(){
+  if(reloadCheck == 0){
+    location.reload();
+    reloadCheck == 1;
+  }
+}
+/*  else{
+    reloadCheck = 0;
+  }
+}
+*/
+/*function reloadPage(){
+  if ()
+}
+*/
 
 var keepRunning = 0; //flag for ending js when user leaves map view. 0 = run, 1 = exit.
 
 function runMode(){ // views that are accessible from map view will call this function to end js script
   keepRunning = 1;
-//  alert("runmode");
+//alert("runmode");
 };
 
 var coordsArray = [];
@@ -28,7 +45,7 @@ function coords(n, c){
 
 function initialize(n){
   var zoomzoom = 17; //amount of zoom-in on map to display course
-
+//alert("at initialize: "+keepRunning);
   //upon viewing maps#course first time, there are no coords in coordsArray, so just render map of Vancouver
   if(coordsArray.length < 1 || coordsArray == null){
     zoomzoom = 12;
@@ -87,27 +104,24 @@ function initialize(n){
       map: map
     }
   );
-//////////////////////////////////////#########################################################################
-/*
-function zoom() {
+
+  //displays the whole course on the map screen
   var bounds = new google.maps.LatLngBounds();
   for(var i = 0; i < coordsArray.length; i++){
-    bounds.extend(coordsArray[i]);
-
+    var someLatLng = new google.maps.LatLng(coordsArray[i]);
+    bounds.extend(someLatLng);
+//    map.fitBounds(bounds);
   }
-
   map.fitBounds(bounds);
-}
-*/
-//////////////////////////////////////////////////////##################################################################
+
   var checkArray = [];  //stores all reached checkpoints to draw a polyline to all reached checkpoints
   var checked = 0;  //current index of coordsArray to compare to user's coords
   var userCoordsArray = []; //stores user's coordinates to draw polyline to all user coords
 
   var marker = new google.maps.Marker({map: map});  //create new marker object; this marker will move to the user's most recent coords
 
-  var repeater = setInterval(function(){repeatUpdatePos()},2000);
-//  repeatUpdatePos();
+//alert("before repeater: "+keepRunning);
+  var repeater = setInterval(function(){repeatUpdatePos()},3000);
 
 //var j = 0;  //for testing checkpoint reach
 
@@ -116,6 +130,9 @@ function zoom() {
 
       //checks if js should stop executing
       if(keepRunning == 1){
+        clearInterval(repeater);
+  //coordsArray = [];
+  //alert("clear");
         return;
       }
 
@@ -137,7 +154,7 @@ function zoom() {
 //pos = coordsArray[j]; //for testing checkpoint reached
 
         userCoordsArray.push(pos);
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png')
+        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
         marker.setPosition(pos);
 //#        map.setCenter(pos);         //center the map to the user coords   //currently disabled, because it's annoying when you are far from course
 
@@ -153,10 +170,10 @@ function zoom() {
 
         //checks if a checkpoint is reached
         reachCheckpoint(pos);
-//j = j+1;   //for testing checkpoint reach
+//j++;   //for testing checkpoint reach
       }
         //loops current function every interval (in ms); i.e. every cycle: get user position, store it into array, redraw polyline with new coords
-        setTimeout(repeatUpdatePos,5000);
+//        setTimeout(repeatUpdatePos,5000);
 
       function errorMessage(error){
         alert("Error: Location info is unavailable.");
@@ -166,7 +183,8 @@ function zoom() {
 //    repeater = setTimeout(repeatUpdatePos,2000);
     //checks if user has reached checkpoint
     function reachCheckpoint(pos){
-
+//      alert("var checked: "+checked);
+//alert("coordsArray[checked]: "+coordsArray[checked]);
       //if user's latitude and longitude matches to 4 decimal places of the checkpoint's, then checkpoint is declared reached
       if( pos.lat.toFixed(4) == coordsArray[checked].lat.toFixed(4) && pos.lng.toFixed(4) == coordsArray[checked].lng.toFixed(4) ){
 

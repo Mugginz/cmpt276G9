@@ -14,14 +14,14 @@ var started = 0; //if started > 0, then startTimer is already running
 function timerMode(){
   if(started == 0){
     started = 1;
-    alert("first if: "+started);
+//    alert("first if: "+started);
     timeroff = 0;
     document.getElementById("startButton").innerHTML = "Pause";
     startTimer();
   }
   else{
     started = 0;
-    alert("2nd if: " +started);
+//    alert("2nd if: " +started);
     timeroff = 1;
     document.getElementById("startButton").innerHTML = "Resume";
     document.getElementById("resetButton").disabled = false;

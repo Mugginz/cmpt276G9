@@ -139,7 +139,7 @@ function createInit(){
 					alert("position: " +position);
 					*/
 //////
-
+					position = {lat: markersArr[index].position.lat(), lng: markersArr[index].position.lng()}; //LatLng object to LatLng literal
 					coords[index] = position;	//update new coordinate in array
 
 					updatePath();
