@@ -14,7 +14,6 @@ html, body{
 }
 
 /* --- Header --- */
-@media screen and (min-device-width: 1345px) {
 	.header {
 		width:100%;
 		height:130px;
@@ -41,7 +40,7 @@ html, body{
 		float:left;
 	}
 
-}
+
 
 @media screen and (max-device-width: 1345px) and (min-device-width: 985px){
 	.header {
