@@ -10,40 +10,38 @@
 </head>
 
 <body class="body_map">
-	<div id="mapcreate" class="map"></div>
-
-	<div class="panel">
-		<%= link_to "Home", root_path %>
-		<%= link_to "All courses", courses_path %>
-		<div class="dropdown">
-			<button onclick="dropdown()" class="dropbtn" style="float:center;" >Menu</button>
-	  		<div id="myDropdown" class="dropdown-content">
-	  			<% if logged_in? %>
-					<li><%= link_to "Profile", current_u %></li>
-					<li><%= link_to "Settings", edit_user_path(current_u) %></li>
-					<li><%= link_to "Log out", logout_path, method: :delete %></li>
-				<% else %>
-					<li><%= link_to "Log in", login_path %></li>
-				<% end %>
-	  		</div>
+<div id="mapcreate" class="map"></div>
+	<div class="container">
+		<div class="container">
+			<button type="button" class="btn btn-default btn-md"><%= link_to "Home", root_path %></button>
+			<button type="button" class="btn btn-default btn-md"><%= link_to "All courses", courses_path %></button>
+		
+			  			<% if logged_in? %>
+							<button type="button" class="btn btn-default btn-md"><%= link_to "Profile", current_u %></button>
+						<% else %>
+							<button type="button" class="btn btn-default btn-md"><%= link_to "Log in", login_path %></button>
+						<% end %>
 		</div>
-		<h5 id="toggleNote">Click on map to add markers.</h5>
-		<button id="toggleDelete" onclick="deleteMarkerMode()">Delete Markers Mode</button>
-
-		<div class="col-xs-4 col-md-offset-4 form_style">
-		<%= form_for @c do |f| %>
-
-	    	<%= f.label :name %>
-	    	<%= f.text_field :name, class: 'form-control', :id => "cn" %>
-
-	    	<%= f.label :region %>
-	     	<%= f.text_field :region, class: 'form-control', :id => "cr" %>
-
-	       	<%= f.submit "Create course", :class=> 'btn btn-primary btn-block', :id => "cc" %>
-	    <% end %>
-		</div>
-
+			<h5 id="toggleNote">Click on map to add markers.</h5>
+			<p><button id="toggleDelete" onclick="deleteMarkerMode()">Delete Markers Mode</button>
+		
+		
+			<div class="col-xs-4 col-md-offset-4 form_style">
+				<%= form_for @c do |f| %>
+	
+			    	<%= f.label :name %>
+			    	<%= f.text_field :name, class: 'form-control', :id => "cn" %>
+		
+			    	<%= f.label :region %>
+			     	<%= f.text_field :region, class: 'form-control', :id => "cr" %>
+		
+			       	<%= f.submit "Create course", :class=> 'btn btn-primary btn-block', :id => "cc" %>
+		    	<% end %>
+			</div>
+		
+		
 	</div>
+
 </body>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ&callback=createInit"onload="runMode()" async defer>
