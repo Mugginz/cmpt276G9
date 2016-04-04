@@ -1,0 +1,5 @@
+<ul>
+	<% @courses.each do |c| %> 
+		<li style="display: inline;"><%= link_to c.name, c %></li>
+	<% end %>
+</ul>

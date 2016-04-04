@@ -1,12 +1,15 @@
 class MapsController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, only: [:update]
-
   def course
+    @courses = Course.all
     @coords = []
+    @na = ""
     if params[:id]
       @c = Course.find(params[:id])
-      @coords = @c.coordinates
+      if @c.name
+        @na = @c.name
+        @coords = @c.coordinates
+      end
     end
   	
     render :layout => false

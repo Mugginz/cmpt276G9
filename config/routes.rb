@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post 'create' => 'courses#create'
 
   resources :users
+  resources :progresses
   resources :courses
 
   root 'statics#home'

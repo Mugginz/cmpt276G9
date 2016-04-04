@@ -10,32 +10,20 @@
 	
 	<div class="user_profile">
 		<p> Name: <%=@u.name %> </p>
-		<p> Age:</p>
 		<p>Routes Completed:</p>
 		<table class="courses_completed">
 			<tr>
 				<th>Course</th>
-				<th>Time to complete</th>
-				<th>[Link to course page]</th>
+				<th>Completed</th>
+				<th>Reset?</th>
 			</tr>
+			<% @p.each do |p| %>
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><%= link_to @courses.find_by_name(p.name).name, @courses.find_by_name(p.name) %></td>
+				<td><% if p.complete %>yes<% else %>no<% end %></td>
+				<td><%= link_to "delete save", p, :method => :get %></td>
 			</tr>
-		</table>
-		<p>Routes in progress:</p>
-		<table class="courses_in_progress">
-			<tr>
-				<th>Course</th>
-				<th>Progress</th>
-				<th>[Link to course page]</th>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+			<% end %>
 		</table>
 	</div>
 </div>

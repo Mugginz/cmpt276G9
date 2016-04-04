@@ -3,7 +3,7 @@ class CreateProgresses < ActiveRecord::Migration
     create_table :progresses do |t|
       t.text :name
       t.references :user, index: true, foreign_key: true
-      t.boolean :checkpoints, :array => true
+      t.integer :status
 
       t.timestamps null: false
     end
