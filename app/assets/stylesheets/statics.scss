@@ -272,8 +272,11 @@ html, body{
 	padding: 5px 0 20px 0;
 	line-height: 1.5;
 	overflow: hidden;
-	background-color: #06000a;
+	#background-color: #06000a;
+	background-color: #300032;
 	color: #e6e6e8;
+	border-top: solid 1px gray;
+	color: gray;
 }
 hr{
 	height: 1px;
@@ -329,6 +332,8 @@ hr{
 .footer-links{
 	padding: 0 10px;
 	display: inline-block;
+	text-decoration: underline;
+	color: gray;
 }
 
 

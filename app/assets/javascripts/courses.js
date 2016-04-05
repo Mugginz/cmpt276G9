@@ -3,7 +3,7 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 //
 
-var deleteMode = 1;
+var deleteMode = 1;	//when deleteMode = 0: able to add markers; 1: able to delete markers
 
 function deleteMarkerMode(){
 	if (deleteMode == 0){
@@ -22,9 +22,9 @@ function createInit(){
 
 	var coords = [];
 	var markersArr = [];
-	var lines = []; //stores polylines
-	var j = 0; // length of markerArr
-	var runningPath; //polyline of markers
+	var lines = []; 	//stores polylines
+	var j = 0; 				//id for markers in array
+	var runningPath; 	//polyline of markers on map
 
 	$("#cc").click(function(){
 		var arr = [];
@@ -41,18 +41,15 @@ function createInit(){
 		var n = $("#cn").val();
 		var r = $("#cr").val();
 
-		//for debugging only.
-		alert("data package: " + n +", " + r + ", " + pack);
-
 		$.ajax({
 			type: "POST",
 			url: "/create",
 			data: {name: n, region: r, coords: pack},
 			success: function(){
-				alert("posted");
+				alert("Map saved! :)");
 			},
 			error: function(){
-				alert("fail");
+				alert("Failed to save map... ;_;");
 			}
 		});
 	});
@@ -63,6 +60,7 @@ function createInit(){
 		zoom: 17
 	});
 
+	//get user's position to center map at their location
 	if( navigator.geolocation ){
 		navigator.geolocation.getCurrentPosition(showPosition, errorMessage);
 	}
@@ -72,7 +70,7 @@ function createInit(){
 
 	var infoWindowStart, infoWindowEnd;
 
-	//adding markers onto map
+	//adding markers onto map when map is clicked
 	google.maps.event.addListener(map, "click", function (event) {
 		if(deleteMode == 1){
     	var latitude = event.latLng.lat();
@@ -84,24 +82,10 @@ function createInit(){
 	    };
 
 	    coords.push(pos);
-/////////
-//myLatLng = new google.maps.LatLng({lat: -34, lng: 151});
-//alert(myLatLng.lat());
-/*			var a = [];
-			a.push([1,2]);
-			a.push([2,4]);
-			var b = [];
-			b.push({hi: 1, bye: 2});
-			b.push({hi: 3, kill: 4});
-			alert(a);
-			alert(b);
-*/
-////
-
 
 			var marker = new google.maps.Marker(
 				{ map: map,
-					unique_id: j,    //able to identify a specific marker to do stuff to
+					unique_id: j,
 					position: pos,
 					draggable: true
 				}
@@ -110,59 +94,49 @@ function createInit(){
 
 			markersArr.push(marker);
 			marker.setPosition(markersArr[markersArr.length - 1].position);
-	//    marker.setPosition(pos);
-
 
 			updatePath();
 
-				//deletes clicked markers if deleteMode is on
+			//deletes clicked markers if deleteMode is on
 			google.maps.event.addListener(marker, 'click', function(){
-//					alert("delete listener "+marker.unique_id);
-/*					if(deleteMode = 0){
-						alert("delete mode on");
-						marker.setMap(null);
-					}
-*/
 					deleteMarkers(marker.unique_id);
-
-				});
+			});
 
 				//redraw polyline after a marker is dragged in place
-				google.maps.event.addListener(marker, 'dragend', function() {
+			google.maps.event.addListener(marker, 'dragend', function() {
 
-					var	position = this.getPosition(); //get LatLng of marker
-					var index = markersArr.indexOf(this); //get the index of this marker
+				var	position = this.getPosition();
+				var index = markersArr.indexOf(this);
 
-///////
-/*					alert("getPosition: " +position);
-					position = {lat: position.lat(), lng: position.lng()};
-					alert("position: " +position);
-					*/
-//////
-					position = {lat: markersArr[index].position.lat(), lng: markersArr[index].position.lng()}; //LatLng object to LatLng literal
-					coords[index] = position;	//update new coordinate in array
+				//LatLng object to LatLng literal
+				position = {lat: markersArr[index].position.lat(), lng: markersArr[index].position.lng()};
+				coords[index] = position;
 
-					updatePath();
-				});
+				updatePath();
+			});
 		}
 	});
 
+	//display an updated polyline for markers on map
 	function updatePath(){
 
 		runningPath = new google.maps.Polyline({
 		  path: coords,
 		  geodesic: true,
-			strokeColor: '#FF0000',
+			strokeColor: '#FF0000', //red
 			strokeOpacity: 1.0,
-			strokeWeight: 2,
+			strokeWeight: 3,
 		});
 
+		//remove previous polyline from map
 		if (lines.length > 0){
-			lines[lines.length - 1].setMap(null); //removes previous polyline from map
+			lines[lines.length - 1].setMap(null);
 		}
 
 		lines.push(runningPath);
-		lines[lines.length -1].setMap(map); //sets the new polyline on map
+
+		//sets the new polyline on map
+		lines[lines.length -1].setMap(map);
 	}
 
 	function deleteMarkers(markerId){
@@ -176,49 +150,21 @@ function createInit(){
 			}
 
 			coords = [];
+
 			for(var i = 0; i < markersArr.length; i++){
-//				markersArr[i].unique_id = i;	//reassign the marker id's to match its index
-//alert("positionmarker: "+ markersArr[i].position.lat());
 				latLngLiteral = {lat: markersArr[i].position.lat(), lng: markersArr[i].position.lng()};
-//alert("latlnglit: "+latLngLiteral);
-				coords.push(latLngLiteral);	//
+				coords.push(latLngLiteral);
 			}
 			updatePath();
-//			alert("markersArr length:"+ markersArr.length+"coords length: "+coords.length);//
-//			alert("coords: "+ coords+"  markersArr: "+ markersArr[0].position+ ", "+markersArr[markersArr.length-1].position);
 		}
 	}
-
-
-/* //too implement later if time permits
-	function windowsDisplay(){
-		//show infowindow to show where the start marker is
-		if (infoWindowStart == null && markersArr.length > 0){
-					infoWindowStart = new google.maps.InfoWindow({map: map});
-					infoWindowStart.setContent("Start");
-					infoWindowStart.open(map, markersArr[0]); //infowindow to indicate first marker placed
-		}
-		//show infowindow to show where the last marker is
-		if (markersArr.length > 1){
-			if(infoWindowEnd == null){
-				infoWindowEnd = new google.maps.InfoWindow({map: map});
-				infoWindowEnd.setContent("End");
-				infoWindowEnd.open(map, markersArr[markersArr.length - 1]); //infowindow to indicate last marker placed
-	//					infoWindowEnd.setPosition(coords.length - 1);
-				}
-	//						infoWindowEnd.close();
-					infoWindowEnd.setPosition(coords.length -1);
-		}
-	}
-	*/
-///////////////////
 
 	function showPosition(position){
-    	pos = {
-    		lat: position.coords.latitude,
-    		lng: position.coords.longitude
-   		};
-    	map.setCenter(pos);
+			pos = {
+				lat: position.coords.latitude,
+				lng: position.coords.longitude
+			};
+			map.setCenter(pos);
 	};
 }
 
