@@ -1,21 +1,48 @@
 <% provide(:title, 'Course List') %>
-<h1>List of courses</h1>
+<head>
+	<title>Course List</title>
 
-<ul class="courses">
-  <% @courses.each do |c| %>
-    <li>
-      <!-- fix 'link_to' to load a course instead -->
-     <%= link_to c.name, c %>,
-      <%#= link_to c.name, map_path, id: "linkcourse" %>,
-      <%#= link_to c.name, map_path(:course_name => c.id) %>,
-      <%#= link_to c.name, map_path(:cid => c.id) %>
-      <%#= link_to c.name, map_path(:c_id => c.id) %>
-      <%#= course.id %>
-      <%= c.region %> :
-      <%= c.coordinates %>
-      <% if logged_in? && current_u.admin? %>
-        <%= button_to "delete", c, method: :delete, data: {confirm: "This action cannot be undone. Are you sure?"} %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+	<% render 'layouts/shim' %>
+</head>
+
+<body>
+<div class="container">
+<H2 style="text-align: left; color:#e6e6e8">All Courses</H2>
+ <% @courses.each do |c| %>
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="/assets/sample_course_thumbnail" alt="SampleCourse">
+      <div class="caption">
+        <p> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Details</button> <button class="btn btn-info btn-lg"><%= link_to c.name, c %> </button> </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Region of <%= c.name %> </h4>
+            </div>
+            <div class="modal-body">
+              <p>This Course is in <%= c.region %> </p>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
+
+</body>

@@ -8,7 +8,9 @@ class ProgressesController < ApplicationController
 		unless @user.nil?
 			if Progress.exists?(user_id: @user.id, name: name)
 				@prog = @user.progresses.find_by_name(name)
-				@prog.update_attributes(status: count, complete: done)
+				if !(@prog.complete)
+					@prog.update_attributes(status: count, complete: done)
+				end
 			else
 				@prog = @user.progresses.build(name: name, status: count)
 				@prog.update_attributes(complete: done)
@@ -17,7 +19,11 @@ class ProgressesController < ApplicationController
 		end
 	end
 
-	def destroy
+	def show
+		@prog = Progress.find(params[:id])
+		@prog.update_attributes(complete: false)
+		@user = current_u
+		redirect_to @user
 	end
 
 end

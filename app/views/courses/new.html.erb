@@ -27,10 +27,11 @@
 				<% end %>
 	  		</div>
 		</div>
+		<h5 id="toggleNote">Click on map to add markers.</h5>
+		<button id="toggleDelete" onclick="deleteMarkerMode()">Delete Markers Mode</button>
 
 		<div class="col-xs-4 col-md-offset-4 form_style">
 		<%= form_for @c do |f| %>
-			<!-- %= render 'shared/error_messages' % -->
 
 	    	<%= f.label :name %>
 	    	<%= f.text_field :name, class: 'form-control', :id => "cn" %>
@@ -38,7 +39,6 @@
 	    	<%= f.label :region %>
 	     	<%= f.text_field :region, class: 'form-control', :id => "cr" %>
 
-	     	<!-- on click get nodes from script? -->
 	       	<%= f.submit "Create course", :class=> 'btn btn-primary btn-block', :id => "cc" %>
 	    <% end %>
 		</div>
@@ -46,7 +46,7 @@
 	</div>
 </body>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ&callback=createInit"onload="runMode()" async defer>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ&callback=createInit" async defer>
 </script>
 
 <%= debug(params) if Rails.env.development? %>
