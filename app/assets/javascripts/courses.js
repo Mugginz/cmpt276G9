@@ -44,13 +44,7 @@ function createInit(){
 		$.ajax({
 			type: "POST",
 			url: "/create",
-			data: {name: n, region: r, coords: pack},
-			success: function(){
-				alert("Map saved! :)");
-			},
-			error: function(){
-				alert("Failed to save map... ;_;");
-			}
+			data: {name: n, region: r, coords: pack}
 		});
 	});
 
