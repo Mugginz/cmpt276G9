@@ -12,7 +12,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "disallow edit admin" do
+  test "disallow remote admin edit" do
     log_in(@u)
     assert_not @u.admin?
     patch :update, id: @u, user: { password: 'password', password_confirmation: 'password', admin: true }

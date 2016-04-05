@@ -2,7 +2,7 @@
 
 one:
   name: MyString
-  region: MyString
+  region: ""
   coordinates: [[2,3],[4,5]]
 
 two:
