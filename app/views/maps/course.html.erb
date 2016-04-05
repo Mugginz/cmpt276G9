@@ -15,7 +15,6 @@
 
 	<div class="container">
 			<div class="btn-group" role="group" >
-<<<<<<< HEAD
 				<div style="float:left;">
 				<%= button_to "Home",  root_path, :method => :get , class: "btn btn-primary" %> </div>
 				<div style="float:left;">
@@ -29,17 +28,6 @@
 			    <% else %>
 			    <div style="float:left;">
 			  	 <%= button_to "Log in", login_path, :method => :get , class: "btn btn-primary" %></div>
-=======
-			  <button type="button" class="glyphicon glyphicon-home"> <%= link_to "Home", root_path, class: 'leaveCoursesView' %> </button>
-			  <button type="button" class="glyphicon glyphicon-th-list"> <%= link_to "All courses", courses_path, class: 'leaveCoursesView', :id => 'someidplease' %> </button>
-
-			  <% if logged_in? %>
-			   		<button type="button" class="glyphicon glyphicon-user"> <%= link_to "Profile", current_u, class: 'leaveCoursesView' %> </button>
-			    	<button type="button" class="glyphicon glyphicon-pencil"> <%= link_to "Create course", create_path, class: 'leaveCoursesView' %> </button>
-			    	<button type="button" class="glyphicon glyphicon-chevron-down"> <%= link_to "Log out", logout_path, method: :delete, class: 'leaveCoursesView' %> </button>
-			    <% else %>
-			  		<button type="button" class="glyphicon glyphicon-arrow-up"> <%= link_to "Log in", login_path, class: 'leaveCoursesView' %>  </button>
->>>>>>> 4c1137b52a28971cc00e3496548fa5aa8796f1c0
 			    <% end %>
 			</div>
 
@@ -69,7 +57,6 @@
 
 		<div class="course_list"></div>
 
-	</div>
 <hr>
 </body>
 
