@@ -11,35 +11,38 @@
 
 <body class="body_map">
 <div id="mapcreate" class="map"></div>
-	<div class="container">
-		<div class="container">
-			<button type="button" class="btn btn-default btn-md"><%= link_to "Home", root_path %></button>
-			<button type="button" class="btn btn-default btn-md"><%= link_to "All courses", courses_path %></button>
-		
+	<div class="container "  >
+		<div class="container" >
+				<div style="float:left;" >
+				<%= button_to "Home",  root_path, :method => :get, class: "btn btn-primary"%> </div>
+				<div style="float:left;">
+ 				<%= button_to "All courses",  courses_path, :method => :get, class: "btn btn-primary"%></div>
+
 			  			<% if logged_in? %>
-							<button type="button" class="btn btn-default btn-md"><%= link_to "Profile", current_u %></button>
+			  			<div style="float:left;" >
+						<%= button_to "Profile",  current_u, :method => :get, class: "btn btn-primary"%> </div>
 						<% else %>
-							<button type="button" class="btn btn-default btn-md"><%= link_to "Log in", login_path %></button>
+						<div style="float:left;" >
+						<%= button_to "Log in",  login_path, :method => :get, class: "btn btn-primary"%> </div>
 						<% end %>
 		</div>
-			<h5 id="toggleNote">Click on map to add markers.</h5>
-			<p><button id="toggleDelete" onclick="deleteMarkerMode()">Delete Markers Mode</button>
-		
-		
-			<div class="col-xs-4 col-md-offset-4 form_style">
-				<%= form_for @c do |f| %>
-	
-			    	<%= f.label :name %>
-			    	<%= f.text_field :name, class: 'form-control', :id => "cn" %>
-		
-			    	<%= f.label :region %>
-			     	<%= f.text_field :region, class: 'form-control', :id => "cr" %>
-		
-			       	<%= f.submit "Create course", :class=> 'btn btn-primary btn-block', :id => "cc" %>
-		    	<% end %>
+			<div class="container col-lg-12 col-lg-offset-3">
+				<div style="display: inline-block;">
+				<h5 id="toggleNote">Click on map to add markers.</h5>
+				<p><button id="toggleDelete" onclick="deleteMarkerMode()">Delete Markers Mode</button>
+				</div>
+				<div class=" form_style" style="display: inline-block;" >
+					<%= form_for @c do |f| %>
+				    	<%= f.label :name %>
+				    	<%= f.text_field :name, class: 'form-control', :id => "cn" %>
+			
+				    	<%= f.label :region %>
+				     	<%= f.text_field :region, class: 'form-control', :id => "cr" %>
+			
+				       	<%= f.submit "Create course", :class=> 'btn btn-primary btn-block', :id => "cc" %>
+			    	<% end %>
+				</div>
 			</div>
-		
-		
 	</div>
 
 </body>

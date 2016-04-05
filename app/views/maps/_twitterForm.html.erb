@@ -1,35 +1,20 @@
-<% provide(:title, 'Course List') %>
-<head>
-	<title>Course List</title>
-
-	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	<%= csrf_meta_tags %>
-	<% render 'layouts/shim' %>
-</head>
-
-<body>
-<div class="container"  style="display: inline-block;">    
-<H2 style="text-align: left; color:#e6e6e8">All Courses</H2>
  <% @courses.each do |c| %> 
 <div class="row">
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <img src="/assets/sample_course_thumbnail" alt="SampleCourse">
-        <div class="caption">
-          <p> 
-            <div> 
-              <div style="display: inline-block;" ><%= button_to c.name,  c, :method => :get, class: "btn btn-info btn-lg"%> </div>
-          		<div  style="display: inline-block;"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Details</button> </div>
-            </div>
-          </p>
-        </div>
+      <div class="caption">
+        <h3> <%= c.name %></h3>
+        <p>  <button type="button" class="btn btn-info btn-lg" ></button><%= link_to c.name, c %></button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Details</button>  </p>
       </div>
     </div>
+  </div>
   
   <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
+
       <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -46,8 +31,6 @@
         </div>
     </div>
   </div>
+  
 </div>  
-<% end %>
-</div>
-
-</body>
+ <% end %>
