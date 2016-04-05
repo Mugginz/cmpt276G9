@@ -13,7 +13,7 @@
 
 	<div id="map" class="map" ></div>
 
-	<div class="container">
+	<div class="container" >
 			<div class="btn-group" role="group" >
 				<div style="float:left;">
 				<%= button_to "Home",  root_path, :method => :get , class: "btn btn-primary" %> </div>
@@ -31,7 +31,21 @@
 			    <% end %>
 			</div>
 
-		<div id="timerdiv">
+
+
+  <div  style=" display: inline-block;">
+	<!-- search bar -->
+    <form class="search" method="post" action="">
+      <input type="search" name="q" placeholder="Search a course here..." autocomplete="on">
+      <ul class="search-ac">
+		<%= render 'searchItems' %>
+      </ul>
+    </form>
+
+	</div>
+	
+	
+			<div id="timerdiv">
 			<div id="hours1_ele">0</div>
 			<div id="hours2_ele">0</div>
 			<div id="minutes1_ele">0</div>
@@ -45,18 +59,6 @@
 		<button id="resetButton" onclick="resetTimer()" disabled="true">Reset</button>
 
 	</div>
-
-
-	<!-- search bar -->
-    <form class="search" method="post" action="">
-      <input type="search" name="q" placeholder="Search a course here..." autocomplete="on">
-      <ul class="search-ac">
-		<%= render 'searchItems' %>
-      </ul>
-    </form>
-
-		<div class="course_list"></div>
-
 <hr>
 </body>
 
