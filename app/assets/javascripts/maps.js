@@ -121,9 +121,6 @@ function initialize(n){
     else{
       alert("Error: This browser does not support geolocation.");
     }
-    function errorMessage(error){
-      alert("Error: Location info is unavailable.");
-    }
     function showPosition(position){
       pos = {
         lat: position.coords.latitude,
@@ -145,6 +142,10 @@ function initialize(n){
       });
 
       reachCheckpoint(pos);
+    }
+
+    function errorMessage(error){
+      alert("Error: Location info is unavailable.");
     }
   }
 
