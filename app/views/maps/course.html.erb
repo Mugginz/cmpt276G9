@@ -37,7 +37,7 @@
 	<!-- search bar -->
     <form class="search" method="post" action="">
       <input type="search" name="q" placeholder="Search a course here..." autocomplete="on">
-      <ul class="search-ac">
+      <ul class="search-ac" style=" max-height: 100px; overflow-y: scroll;">
 		<%= render 'searchItems' %>
       </ul>
     </form>
