@@ -12,18 +12,18 @@
 <body class="body_map" >
 
 	<div id="map" class="map" ></div>
-	
+
 	<div class="container">
 			<div class="btn-group" role="group" >
-			  <button type="button" class="glyphicon glyphicon-home"> <%= link_to "Home", root_path %> </button>
-			  <button type="button" class="glyphicon glyphicon-th-list"> <%= link_to "All courses", courses_path %> </button>
-			  
+			  <button type="button" class="glyphicon glyphicon-home"> <%= link_to "Home", root_path, class: 'leaveCoursesView' %> </button>
+			  <button type="button" class="glyphicon glyphicon-th-list"> <%= link_to "All courses", courses_path, class: 'leaveCoursesView', :id => 'someidplease' %> </button>
+
 			  <% if logged_in? %>
-			   		<button type="button" class="glyphicon glyphicon-user"> <%= link_to "Profile", current_u %> </button>
-			    	<button type="button" class="glyphicon glyphicon-pencil"> <%= link_to "Create course", create_path %> </button>			  	
-			    	<button type="button" class="glyphicon glyphicon-chevron-down"> <%= link_to "Log out", logout_path, method: :delete %> </button>
+			   		<button type="button" class="glyphicon glyphicon-user"> <%= link_to "Profile", current_u, class: 'leaveCoursesView' %> </button>
+			    	<button type="button" class="glyphicon glyphicon-pencil"> <%= link_to "Create course", create_path, class: 'leaveCoursesView' %> </button>
+			    	<button type="button" class="glyphicon glyphicon-chevron-down"> <%= link_to "Log out", logout_path, method: :delete, class: 'leaveCoursesView' %> </button>
 			    <% else %>
-			  		<button type="button" class="glyphicon glyphicon-arrow-up"> <%= link_to "Log in", login_path %>  </button>
+			  		<button type="button" class="glyphicon glyphicon-arrow-up"> <%= link_to "Log in", login_path, class: 'leaveCoursesView' %>  </button>
 			    <% end %>
 			</div>
 
@@ -62,4 +62,3 @@
 
 
 <%= debug(params) if Rails.env.development? %>
-

@@ -2,6 +2,8 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
+/*
 var reloadCheck = 0;
 
 function reloadPage(){
@@ -10,6 +12,7 @@ function reloadPage(){
     reloadCheck == 1;
   }
 }
+*/
 /*  else{
     reloadCheck = 0;
   }
@@ -22,13 +25,21 @@ function reloadPage(){
 
 var keepRunning = 0; //flag for ending js when user leaves map view. 0 = run, 1 = exit.
 
+/*
 function runMode(){ // views that are accessible from map view will call this function to end js script
   keepRunning = 1;
 //alert("runmode");
 };
-
+*/
+/*
+$(document).on("click", "#someidplease", function(event){
+  keepRunning = 1;
+  clearInterval(repeater);
+});
+*/
 var coordsArray = [];
 var map;
+var repeater;
 
 function coords(n, c){
 
@@ -38,6 +49,16 @@ function coords(n, c){
 //    coordsArray[i] = "{lat:"+ c[i][0]+","+ "lng:" +c[i][1]+"}";
       coordsArray[i] = {lat: c[i][0] ,lng: c[i][1]};
     }
+  }
+
+  //add click listeners for all links on course view to clear this script
+  var leaveMaps = document.querySelectorAll('.leaveCoursesView');
+  for (var i = 0; i < leaveMaps.length; i++){
+    leaveMaps[i].addEventListener('click', function(){
+        keepRunning = 1;
+        clearInterval(repeater);
+alert("cleared");
+      });
   }
 
   initialize(n);
@@ -121,7 +142,8 @@ function initialize(n){
   var marker = new google.maps.Marker({map: map});  //create new marker object; this marker will move to the user's most recent coords
 
 //alert("before repeater: "+keepRunning);
-  var repeater = setInterval(function(){repeatUpdatePos()},3000);
+//  var repeater = setInterval(function(){repeatUpdatePos()},3000);
+  repeater = setInterval(function(){repeatUpdatePos()},3000);
 
 //var j = 0;  //for testing checkpoint reach
 
