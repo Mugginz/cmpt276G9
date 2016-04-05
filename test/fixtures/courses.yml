@@ -8,4 +8,4 @@ one:
 two:
   name: MyString2
   region: MyString
-  coordinates: []
+  coordinates: [[10.3,234.2],[2,7.53]]
