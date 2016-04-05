@@ -8,14 +8,11 @@
 
 	     	 <li><%= link_to "Maps", map_path %></li> 
 	     	 <li><%= link_to "Popular Courses", courses_path %></li> 
-	      	<% if logged_in? %>
-				<li><%= link_to "Profile", current_u, :class => "btn"%> </li>
-				<li><%= link_to "Log out", logout_path, method: :delete, :class => "btn"%></li>
-			<% else %>
-			<% end %>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
 	      <% if logged_in? %>
+	    	  <li><%= link_to "Profile", current_u, :class => "btn"%> </li>
+			  <li><%= link_to "Log out", logout_path, method: :delete, :class => "btn"%></li>
 	      <% else %>
 			<%= form_for(:session, url: login_path, html: { class: "navbar-form navbar-right form-inline" }) do |f| %> 
 				<%= f.text_field :email, :placeholder => "Email", :class => "input-small" %> 
@@ -23,7 +20,7 @@
 				<%= f.check_box :remember_me, :class => "checkbox" %><%= f.label :remember_me, :class => "checkbox" %> 
 				<%= f.submit 'Login', :class => "glyphicon mylogin" %> 
 			<% end %>
-				<% end %>
+		  <% end %>
 	    </ul>
 	  </div>
 	</nav>
