@@ -9,19 +9,24 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container"  style="display: inline-block;">    
 <H2 style="text-align: left; color:#e6e6e8">All Courses</H2>
  <% @courses.each do |c| %>
 <div class="row">
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <img src="/assets/sample_course_thumbnail" alt="SampleCourse">
-      <div class="caption">
-        <p> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Details</button> <button class="btn btn-info btn-lg"><%= link_to c.name, c %> </button> </p>
+        <div class="caption">
+          <p> 
+            <div> 
+              <div style="display: inline-block;" ><%= button_to c.name,  c, :method => :get, class: "btn btn-info btn-lg"%> </div>
+          		<div  style="display: inline-block;"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Details</button> </div>
+            </div>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-
+  
   <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
