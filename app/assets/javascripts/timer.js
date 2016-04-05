@@ -1,17 +1,54 @@
 /*Timer to go with the course view.*/
 
+var hours1 = 0; //left digit
+var hours2 = 0;
+var minutes1 = 0;
+var minutes2 = 0;
+var seconds1 = 0;
+var seconds2 = 0;
+
 var timeroff = 0; //if 1, clears timer
+var started = 0; //if started > 0, then startTimer is already running
+
+
+function timerMode(){
+  if(started == 0){
+    started = 1;
+//    alert("first if: "+started);
+    timeroff = 0;
+    document.getElementById("startButton").innerHTML = "Pause";
+    startTimer();
+  }
+  else{
+    started = 0;
+//    alert("2nd if: " +started);
+    timeroff = 1;
+    document.getElementById("startButton").innerHTML = "Resume";
+    document.getElementById("resetButton").disabled = false;
+  }
+}
+
+//resets timer when reset button clicked
+function resetTimer(){
+  timeroff == 0;
+
+  hours1 = 0;
+  hours2 = 0;
+  minutes1 = 0;
+  minutes2 = 0;
+  seconds1 = 0;
+  seconds2 = 0;
+
+  timeDisplay();
+
+  document.getElementById("resetButton").disabled = true;
+  document.getElementById("startButton").innerHTML = "Start";
+  started = 0;
+}
+
 
 //timer updates every 1 second
 function startTimer(){
-  timeroff = 0;
-
-  var hours1 = 0;
-  var hours2 = 0;
-  var minutes1 = 0;
-  var minutes2 = 0;
-  var seconds1 = 0;
-  var seconds2 = 0;
 
   var timer = setInterval(function(){ increment() },1000);
 
@@ -41,21 +78,26 @@ function startTimer(){
         }
       }
     }
-    document.getElementById("seconds2_ele").innerHTML = seconds2;
-    document.getElementById("seconds1_ele").innerHTML = seconds1;
-    document.getElementById("minutes2_ele").innerHTML = minutes2;
-    document.getElementById("minutes1_ele").innerHTML = minutes1;
-    document.getElementById("hours2_ele").innerHTML = hours2;
-    document.getElementById("hours1_ele").innerHTML = hours1;
+
+    timeDisplay();
 
     if (timeroff == 1){
-//      alert("cleared");
       clearInterval(timer);
     }
   }
 }
-
-//called when user completes course
+//called when user completes course, or when pause button pressed
 function clearTimer(){
   timeroff = 1;
+  started = 0;
+}
+
+//updates the timer display
+function timeDisplay(){
+  document.getElementById("seconds2_ele").innerHTML = seconds2;
+  document.getElementById("seconds1_ele").innerHTML = seconds1;
+  document.getElementById("minutes2_ele").innerHTML = minutes2;
+  document.getElementById("minutes1_ele").innerHTML = minutes1;
+  document.getElementById("hours2_ele").innerHTML = hours2;
+  document.getElementById("hours1_ele").innerHTML = hours1;
 }

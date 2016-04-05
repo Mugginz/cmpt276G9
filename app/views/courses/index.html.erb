@@ -11,7 +11,7 @@
 <body>
 <div class="container"  style="display: inline-block;">    
 <H2 style="text-align: left; color:#e6e6e8">All Courses</H2>
- <% @courses.each do |c| %> 
+ <% @courses.each do |c| %>
 <div class="row">
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
@@ -39,14 +39,14 @@
             <div class="modal-body">
               <p>This Course is in <%= c.region %> </p>
             </div>
-        
+
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
   </div>
-</div>  
+</div>
 <% end %>
 </div>
 
