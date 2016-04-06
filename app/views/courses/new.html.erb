@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Course Create</title>
+
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+	<% render 'layouts/shim' %>
+</head>
+
+<body class="body_map">
+<div id="mapcreate" class="map"></div>
+	<div class="container "  >
+		<div class="container" >
+				<div style="float:left;" >
+				<%= button_to "Home",  root_path, :method => :get, class: "btn btn-primary"%> </div>
+				<div style="float:left;">
+ 				<%= button_to "All courses",  courses_path, :method => :get, class: "btn btn-primary"%></div>
+
+			  			<% if logged_in? %>
+			  			<div style="float:left;" >
+						<%= button_to "Profile",  current_u, :method => :get, class: "btn btn-primary"%> </div>
+						<% else %>
+						<div style="float:left;" >
+						<%= button_to "Log in",  login_path, :method => :get, class: "btn btn-primary"%> </div>
+						<% end %>
+		</div>
+			<div class="container col-lg-12 col-lg-offset-3">
+				<div style="display: inline-block;">
+				<h5 id="toggleNote">Click on map to add markers.</h5>
+				<p><button id="toggleDelete" onclick="deleteMarkerMode()">Delete Markers Mode</button>
+				</div>
+				<div class=" form_style" style="display: inline-block;" >
+					<%= form_for @c do |f| %>
+				    	<%= f.label :name %>
+				    	<%= f.text_field :name, class: 'form-control', :id => "cn" %>
+			
+				    	<%= f.label :region %>
+				     	<%= f.text_field :region, class: 'form-control', :id => "cr" %>
+			
+				       	<%= f.submit "Create course", :class=> 'btn btn-primary btn-block', :id => "cc" %>
+			    	<% end %>
+				</div>
+			</div>
+	</div>
+
+</body>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDD4iRh-e5YvN2Ip9Xfda7wqLB6mGizxQ&callback=createInit" async defer>
+</script>
+
+<%= debug(params) if Rails.env.development? %>

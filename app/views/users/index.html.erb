@@ -1,0 +1,16 @@
+<% provide(:title, 'All users') %>
+<div class="container">
+<h1 style="color:white;">List of users</h1>
+
+<ul class="all_users">
+  <% @users.each do |u| %>
+    <li>
+      <%= avatar_for(u) %>
+      <%= link_to u.name, u %>
+      <% if current_u.admin? && current_u != u %>
+      	| <%= link_to "delete", u, method: :delete, data: {confirm: "This action cannot be undone. Are you sure?"} %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+</div>

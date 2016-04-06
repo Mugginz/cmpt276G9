@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  region: ""
+  coordinates: [[2,3],[4,5]]
+
+two:
+  name: MyString2
+  region: MyString
+  coordinates: [[10.3,234.2],[2,7.53]]
