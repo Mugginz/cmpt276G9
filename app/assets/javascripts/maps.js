@@ -101,7 +101,7 @@ function initialize(n){
   var userCoordsArray = []; //stores user's coordinates to draw polyline of user coords
 
   var marker = new google.maps.Marker({map: map});  //marker of user's current coords
-var j = 0; // --- Autocompleting for demo ---//
+//var j = 0; // --- Autocompleting for demo ---//
 
     //loops current function every interval (in ms)
   repeater = setInterval(function(){repeatUpdatePos()},3000);
@@ -127,7 +127,7 @@ var j = 0; // --- Autocompleting for demo ---//
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-pos = coordsArray[j]; // --- Autocompleting for demo --- //
+//pos = coordsArray[j]; // --- Autocompleting for demo --- //
 
       userCoordsArray.push(pos);
       marker.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png'); //user position on map represented by purple marker
@@ -144,7 +144,7 @@ pos = coordsArray[j]; // --- Autocompleting for demo --- //
       });
 
       reachCheckpoint(pos);
-j++; // --- Autocompleting for demo --- //
+//j++; // --- Autocompleting for demo --- //
     }
 
     function errorMessage(error){
