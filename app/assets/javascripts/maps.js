@@ -61,6 +61,14 @@ function initialize(n){
     });
 
     //infowindow to show where the start marker is
+    var marker = new google.maps.Marker(
+      { map: map,
+        id: i,
+        position: coordsArray[i]
+      }
+    );
+
+  //infowindow to show where the start marker is
     if (i == 0){
       infoWindowStart = new google.maps.InfoWindow({map: map});
       infoWindowStart.setContent("Start");
@@ -96,12 +104,15 @@ function initialize(n){
   }
   map.fitBounds(bounds);
 
+
   var checkArray = [];  //stores all reached checkpoints to draw a polyline to all reached checkpoints
   var checked = 0;  //current index of coordsArray to compare to user's coords
   var userCoordsArray = []; //stores user's coordinates to draw polyline of user coords
 
   var marker = new google.maps.Marker({map: map});  //marker of user's current coords
-var j =0;
+
+//var j = 0; // --- Autocompleting for demo ---//
+
     //loops current function every interval (in ms)
   repeater = setInterval(function(){repeatUpdatePos()},3000);
 
@@ -126,7 +137,9 @@ var j =0;
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-pos = coordsArray[j];
+
+//pos = coordsArray[j]; // --- Autocompleting for demo --- //
+
       userCoordsArray.push(pos);
       marker.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png'); //user position on map represented by purple marker
       marker.setPosition(pos);
@@ -142,11 +155,12 @@ pos = coordsArray[j];
       });
 
       reachCheckpoint(pos);
-j++;
+
+//j++; // --- Autocompleting for demo --- //
     }
 
     function errorMessage(error){
-      alert("Error: Location info is unavailable.");
+      console.log("Error: Location info is unavailable.");
     }
   }
 
